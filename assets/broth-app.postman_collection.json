@@ -1,0 +1,1140 @@
+{
+	"info": {
+		"_postman_id": "8d04886a-0bfb-4512-93a7-aa1c06f130a8",
+		"name": "broth-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "zulfi2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "zulfi2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Jombang",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ulum2",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ulum2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "12345678990",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://brothshoes.otwlulus.com/public/api/register",
+							"protocol": "http",
+							"host": [
+								"brothshoes",
+								"otwlulus",
+								"com"
+							],
+							"path": [
+								"public",
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "x-ratelimit-limit",
+							"value": "60"
+						},
+						{
+							"key": "x-ratelimit-remaining",
+							"value": "59"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-length",
+							"value": "341"
+						},
+						{
+							"key": "content-encoding",
+							"value": "br"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "date",
+							"value": "Thu, 07 Apr 2022 11:18:59 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"User Registered\"\n    },\n    \"data\": {\n        \"acces_token\": \"5|5udbPBECOF1J9IvLrRCLzXvvWoJlqGiCP0LwUvU0\",\n        \"type_token\": \"Bearer\",\n        \"user\": {\n            \"id\": 4,\n            \"name\": \"ulum2\",\n            \"email\": \"ulum2@gmail.com\",\n            \"phone\": \"12345678990\",\n            \"roles\": \"user\",\n            \"email_verified_at\": null,\n            \"two_factor_confirmed_at\": null,\n            \"current_team_id\": null,\n            \"profile_photo_path\": null,\n            \"created_at\": \"2022-04-07T11:18:59.000000Z\",\n            \"updated_at\": \"2022-04-07T11:18:59.000000Z\",\n            \"profile_photo_url\": \"https://ui-avatars.com/api/?name=u&color=7F9CF5&background=EBF4FF\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "zulfi@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "ulum@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://brothshoes.otwlulus.com/public/api/login",
+							"protocol": "http",
+							"host": [
+								"brothshoes",
+								"otwlulus",
+								"com"
+							],
+							"path": [
+								"public",
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "x-ratelimit-limit",
+							"value": "60"
+						},
+						{
+							"key": "x-ratelimit-remaining",
+							"value": "59"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-length",
+							"value": "360"
+						},
+						{
+							"key": "content-encoding",
+							"value": "br"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "date",
+							"value": "Thu, 07 Apr 2022 02:01:23 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Authentication\"\n    },\n    \"data\": {\n        \"acces_token\": \"4|Mq3UVBOxF5nKDqo5yS8mL5MMCZMieUhGwV0fx8dG\",\n        \"type_token\": \"Bearer\",\n        \"user\": {\n            \"id\": 2,\n            \"name\": \"ulum bahrul\",\n            \"email\": \"ulum@gmail.com\",\n            \"phone\": \"12345678990\",\n            \"roles\": \"user\",\n            \"email_verified_at\": null,\n            \"two_factor_confirmed_at\": null,\n            \"current_team_id\": null,\n            \"profile_photo_path\": null,\n            \"created_at\": \"2022-04-05T07:29:41.000000Z\",\n            \"updated_at\": \"2022-04-06T03:02:01.000000Z\",\n            \"profile_photo_url\": \"https://ui-avatars.com/api/?name=u+b&color=7F9CF5&background=EBF4FF\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|V4s2lq6Dp654YL4YVQP7A6DUITxLVIiBk0eCHPKn",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 4|Mq3UVBOxF5nKDqo5yS8mL5MMCZMieUhGwV0fx8dG",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://brothshoes.otwlulus.com/public/api/user",
+							"protocol": "http",
+							"host": [
+								"brothshoes",
+								"otwlulus",
+								"com"
+							],
+							"path": [
+								"public",
+								"api",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "x-ratelimit-limit",
+							"value": "60"
+						},
+						{
+							"key": "x-ratelimit-remaining",
+							"value": "59"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-length",
+							"value": "306"
+						},
+						{
+							"key": "content-encoding",
+							"value": "br"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "date",
+							"value": "Thu, 07 Apr 2022 02:02:16 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Data profil user berhasil diambil\"\n    },\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"ulum bahrul\",\n        \"email\": \"ulum@gmail.com\",\n        \"phone\": \"12345678990\",\n        \"roles\": \"user\",\n        \"email_verified_at\": null,\n        \"two_factor_confirmed_at\": null,\n        \"current_team_id\": null,\n        \"profile_photo_path\": null,\n        \"created_at\": \"2022-04-05T07:29:41.000000Z\",\n        \"updated_at\": \"2022-04-06T03:02:01.000000Z\",\n        \"profile_photo_url\": \"https://ui-avatars.com/api/?name=u+b&color=7F9CF5&background=EBF4FF\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 9|wHl6VwNx50LzxtmtaKWmouQtHQjsebtJSSaug5y8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "zulfikar",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "zulfi@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Malang",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Profile",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 111|mffGpcOXMQrBFE2UZpKYC9OTmhXcYcgzdCIZ1v5g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ulum",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ulum@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://brothshoes.otwlulus.com/public/api/user",
+							"protocol": "http",
+							"host": [
+								"brothshoes",
+								"otwlulus",
+								"com"
+							],
+							"path": [
+								"public",
+								"api",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "x-ratelimit-limit",
+							"value": "60"
+						},
+						{
+							"key": "x-ratelimit-remaining",
+							"value": "59"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-length",
+							"value": "352"
+						},
+						{
+							"key": "content-encoding",
+							"value": "br"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "date",
+							"value": "Mon, 18 Apr 2022 12:26:40 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Profile Updated\"\n    },\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"ulum\",\n        \"email\": \"ulum@gmail.com\",\n        \"phone\": \"12345678\",\n        \"roles\": \"pelanggan\",\n        \"img_url\": \"https://freepikpsd.com/file/2019/10/avatar-png-icon-2-Transparent-Images.png\",\n        \"email_verified_at\": null,\n        \"two_factor_confirmed_at\": null,\n        \"current_team_id\": null,\n        \"profile_photo_path\": null,\n        \"created_at\": \"2022-04-10T11:48:28.000000Z\",\n        \"updated_at\": \"2022-04-18T12:26:40.000000Z\",\n        \"profile_photo_url\": \"https://ui-avatars.com/api/?name=u&color=7F9CF5&background=EBF4FF\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 9|wHl6VwNx50LzxtmtaKWmouQtHQjsebtJSSaug5y8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://brothshoes.otwlulus.com/public/api/products",
+					"protocol": "http",
+					"host": [
+						"brothshoes",
+						"otwlulus",
+						"com"
+					],
+					"path": [
+						"public",
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Product",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://brothshoes.otwlulus.com/public/api/products",
+							"protocol": "http",
+							"host": [
+								"brothshoes",
+								"otwlulus",
+								"com"
+							],
+							"path": [
+								"public",
+								"api",
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "x-ratelimit-limit",
+							"value": "60"
+						},
+						{
+							"key": "x-ratelimit-remaining",
+							"value": "59"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-length",
+							"value": "1349"
+						},
+						{
+							"key": "content-encoding",
+							"value": "br"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 22 Apr 2022 03:35:14 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Data list produk berhasil diambil\"\n    },\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"name\": \"Deep Clean\",\n                \"price\": \"25000\",\n                \"description\": \"CLEAN adalah teknik mencuci sepatu secara menyeluruh mulai dari bagian luar hingga dalam\",\n                \"url\": \"https://cdn-image.hipwee.com/wp-content/uploads/2020/08/hipwee-clean-tennis-shoes-process-960x640.jpg\",\n                \"categories_id\": \"1\",\n                \"deleted_at\": null,\n                \"created_at\": \"2022-04-11T13:06:34.000000Z\",\n                \"updated_at\": \"2022-04-11T13:06:34.000000Z\",\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"Cuci Sepatu\",\n                    \"price_items\": \"32000.00\",\n                    \"description_items\": \"\",\n                    \"img_url\": \"https://cms.sehatq.com/cdn-cgi/image/f=auto,width=480,fit=pad,background=white,quality=100/public/img/article_img/begini-cara-cuci-sepatu-yang-benar-di-rumah-agar-kaki-bebas-bau-1601262741.jpg\",\n                    \"deleted_at\": null,\n                    \"created_at\": \"2022-04-11T13:05:35.000000Z\",\n                    \"updated_at\": \"2022-04-11T13:05:35.000000Z\"\n                }\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Deep Tas\",\n                \"price\": \"30000\",\n                \"description\": \"\",\n                \"url\": \"https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/2019/02/28/428144538.jpg\",\n                \"categories_id\": \"2\",\n                \"deleted_at\": null,\n                \"created_at\": \"2022-04-16T18:59:30.000000Z\",\n                \"updated_at\": \"2022-04-16T18:59:30.000000Z\",\n                \"category\": {\n                    \"id\": 2,\n                    \"name\": \"Cuci Tas dan Koper\",\n                    \"price_items\": \"380000.00\",\n                    \"description_items\": \"\",\n                    \"img_url\": \"https://cms.sehatq.com/cdn-cgi/image/f=auto,width=480,fit=pad,background=white,quality=100/public/img/article_img/begini-cara-cuci-sepatu-yang-benar-di-rumah-agar-kaki-bebas-bau-1601262741.jpg\",\n                    \"deleted_at\": null,\n                    \"created_at\": \"2022-04-11T13:06:15.000000Z\",\n                    \"updated_at\": \"2022-04-11T13:06:15.000000Z\"\n                }\n            },\n            {\n                \"id\": 3,\n                \"name\": \"Deep Koper\",\n                \"price\": \"2000\",\n                \"description\": \"\",\n                \"url\": \"https://soc-phoenix.s3-ap-southeast-1.amazonaws.com/wp-content/uploads/2018/07/18174702/shutterstock_345994058.jpg\",\n                \"categories_id\": \"3\",\n                \"deleted_at\": null,\n                \"created_at\": \"2022-04-16T19:37:06.000000Z\",\n                \"updated_at\": \"2022-04-16T19:37:06.000000Z\",\n                \"category\": {\n                    \"id\": 3,\n                    \"name\": \"Cuci Koper\",\n                    \"price_items\": \"37000.00\",\n                    \"description_items\": \"\",\n                    \"img_url\": \"https://cms.sehatq.com/cdn-cgi/image/f=auto,width=480,fit=pad,background=white,quality=100/public/img/article_img/begini-cara-cuci-sepatu-yang-benar-di-rumah-agar-kaki-bebas-bau-1601262741.jpg\",\n                    \"deleted_at\": null,\n                    \"created_at\": \"2022-04-16T19:41:17.000000Z\",\n                    \"updated_at\": \"2022-04-16T19:41:17.000000Z\"\n                }\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Unyellowing\",\n                \"price\": \"35000\",\n                \"description\": \"sepatu putih sangat rentan berubah warna menjadi kekuningan (yellowing). Sepatu putih yang menguning malah bisa membuat penampilanmu terlihat kurang maksimal, lho. Terdapat cara untuk menghilangkan warna kekuningan pada sepatu putih yang disebut sebagai unyellowing\",\n                \"url\": \"https://images.f2fcdn.net/files/niken/midsol-pada-sneakersmu-mengunin.png\",\n                \"categories_id\": \"1\",\n                \"deleted_at\": null,\n                \"created_at\": \"2022-04-17T12:15:10.000000Z\",\n                \"updated_at\": \"2022-04-17T12:15:10.000000Z\",\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"Cuci Sepatu\",\n                    \"price_items\": \"32000.00\",\n                    \"description_items\": \"\",\n                    \"img_url\": \"https://cms.sehatq.com/cdn-cgi/image/f=auto,width=480,fit=pad,background=white,quality=100/public/img/article_img/begini-cara-cuci-sepatu-yang-benar-di-rumah-agar-kaki-bebas-bau-1601262741.jpg\",\n                    \"deleted_at\": null,\n                    \"created_at\": \"2022-04-11T13:05:35.000000Z\",\n                    \"updated_at\": \"2022-04-11T13:05:35.000000Z\"\n                }\n            },\n            {\n                \"id\": 9,\n                \"name\": \"Re Colour\",\n                \"price\": \"80000\",\n                \"description\": \"CUSTOM PAINTING & RECOLOR pada sepatu adalah proses pengecatan ulang ketika dirasa warna sepatunya sudah mulai usang atau kusam, bisa disesuaikan dengan warna dasar sepatu atau merubahnya dengan warna lain , dan bisa juga menggambarnya atau membuat motif yang lebih menarik.\",\n                \"url\": \"https://sapatocare.id/assets/images/pictures/recolor.jpg\",\n                \"categories_id\": \"1\",\n                \"deleted_at\": null,\n                \"created_at\": \"2022-04-17T12:15:10.000000Z\",\n                \"updated_at\": \"2022-04-17T12:15:10.000000Z\",\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"Cuci Sepatu\",\n                    \"price_items\": \"32000.00\",\n                    \"description_items\": \"\",\n                    \"img_url\": \"https://cms.sehatq.com/cdn-cgi/image/f=auto,width=480,fit=pad,background=white,quality=100/public/img/article_img/begini-cara-cuci-sepatu-yang-benar-di-rumah-agar-kaki-bebas-bau-1601262741.jpg\",\n                    \"deleted_at\": null,\n                    \"created_at\": \"2022-04-11T13:05:35.000000Z\",\n                    \"updated_at\": \"2022-04-11T13:05:35.000000Z\"\n                }\n            }\n        ],\n        \"first_page_url\": \"http://brothshoes.otwlulus.com/public/api/products?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://brothshoes.otwlulus.com/public/api/products?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://brothshoes.otwlulus.com/public/api/products?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://brothshoes.otwlulus.com/public/api/products\",\n        \"per_page\": 6,\n        \"prev_page_url\": null,\n        \"to\": 5,\n        \"total\": 5\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Product Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://brothshoes.otwlulus.com/public/api/categories",
+					"protocol": "http",
+					"host": [
+						"brothshoes",
+						"otwlulus",
+						"com"
+					],
+					"path": [
+						"public",
+						"api",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "6",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Cuci Tas",
+							"disabled": true
+						},
+						{
+							"key": "show_product",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 9|wHl6VwNx50LzxtmtaKWmouQtHQjsebtJSSaug5y8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/transactions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Transaction",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 6|AM9FmYIILbxaSIBOCxQ3tr6jc4EEcwOnigdIAtsN",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/transactions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 07:13:48 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 07:13:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.19"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Data list transaksi berhasil diambil\"\n    },\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [],\n        \"first_page_url\": \"http://127.0.0.1:8000/api/transactions?page=1\",\n        \"from\": null,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://127.0.0.1:8000/api/transactions?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/transactions?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://127.0.0.1:8000/api/transactions\",\n        \"per_page\": 6,\n        \"prev_page_url\": null,\n        \"to\": null,\n        \"total\": 0\n    }\n}"
+				},
+				{
+					"name": "Transaction",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 106|CycMGEYj2iTj9bUT93hZKxxMEI4nrUBYV62Q8T27",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://brothshoes.otwlulus.com/public/api/transactions",
+							"protocol": "http",
+							"host": [
+								"brothshoes",
+								"otwlulus",
+								"com"
+							],
+							"path": [
+								"public",
+								"api",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "x-ratelimit-limit",
+							"value": "60"
+						},
+						{
+							"key": "x-ratelimit-remaining",
+							"value": "59"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-length",
+							"value": "951"
+						},
+						{
+							"key": "content-encoding",
+							"value": "br"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "date",
+							"value": "Mon, 18 Apr 2022 03:56:42 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Data list transaksi berhasil diambil\"\n    },\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 3,\n                \"users_id\": \"13\",\n                \"categories_service\": \"pickupdelivery\",\n                \"address\": \"Marsemoon\",\n                \"time_pickup_delivery\": \"20/04/2021\",\n                \"total_price\": \"265000.00\",\n                \"shipping_price\": \"0.00\",\n                \"status\": \"pending\",\n                \"payment\": \"manual\",\n                \"deleted_at\": null,\n                \"created_at\": \"2022-04-18T03:54:50.000000Z\",\n                \"updated_at\": \"2022-04-18T03:54:50.000000Z\",\n                \"items\": [\n                    {\n                        \"id\": 3,\n                        \"users_id\": \"13\",\n                        \"products_id\": \"9\",\n                        \"transactions_id\": \"3\",\n                        \"quantity\": \"2\",\n                        \"created_at\": \"2022-04-18T03:54:50.000000Z\",\n                        \"updated_at\": \"2022-04-18T03:54:50.000000Z\",\n                        \"product\": {\n                            \"id\": 9,\n                            \"name\": \"Re Colour\",\n                            \"price\": \"80000\",\n                            \"description\": \"CUSTOM PAINTING & RECOLOR pada sepatu adalah proses pengecatan ulang ketika dirasa warna sepatunya sudah mulai usang atau kusam, bisa disesuaikan dengan warna dasar sepatu atau merubahnya dengan warna lain , dan bisa juga menggambarnya atau membuat motif yang lebih menarik.\",\n                            \"url\": \"https://sapatocare.id/assets/images/pictures/recolor.jpg\",\n                            \"categories_id\": \"1\",\n                            \"deleted_at\": null,\n                            \"created_at\": \"2022-04-17T12:15:10.000000Z\",\n                            \"updated_at\": \"2022-04-17T12:15:10.000000Z\"\n                        }\n                    },\n                    {\n                        \"id\": 4,\n                        \"users_id\": \"13\",\n                        \"products_id\": \"8\",\n                        \"transactions_id\": \"3\",\n                        \"quantity\": \"3\",\n                        \"created_at\": \"2022-04-18T03:54:50.000000Z\",\n                        \"updated_at\": \"2022-04-18T03:54:50.000000Z\",\n                        \"product\": {\n                            \"id\": 8,\n                            \"name\": \"Unyellowing\",\n                            \"price\": \"35000\",\n                            \"description\": \"sepatu putih sangat rentan berubah warna menjadi kekuningan (yellowing). Sepatu putih yang menguning malah bisa membuat penampilanmu terlihat kurang maksimal, lho. Terdapat cara untuk menghilangkan warna kekuningan pada sepatu putih yang disebut sebagai unyellowing\",\n                            \"url\": \"https://images.f2fcdn.net/files/niken/midsol-pada-sneakersmu-mengunin.png\",\n                            \"categories_id\": \"1\",\n                            \"deleted_at\": null,\n                            \"created_at\": \"2022-04-17T12:15:10.000000Z\",\n                            \"updated_at\": \"2022-04-17T12:15:10.000000Z\"\n                        }\n                    }\n                ]\n            }\n        ],\n        \"first_page_url\": \"http://brothshoes.otwlulus.com/public/api/transactions?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://brothshoes.otwlulus.com/public/api/transactions?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://brothshoes.otwlulus.com/public/api/transactions?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://brothshoes.otwlulus.com/public/api/transactions\",\n        \"per_page\": 6,\n        \"prev_page_url\": null,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Checkout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 9|wHl6VwNx50LzxtmtaKWmouQtHQjsebtJSSaug5y8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categories_service\": \"ambilsendiri\",\r\n    \"address\": \"Jombang\",\r\n    \"patokan\" : \"No. 39b\",\r\n    \"detail_lokasi\" : \"Rumah sebelah warung kopi\",\r\n    \"time_pickup_delivery\": \"20/04/2021\",\r\n    \"items\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"quantity\" : \"2\"\r\n        }\r\n    ],\r\n    \"status\": \"pending\",\r\n    \"total_price\": \"2000\",\r\n    \"shipping_price\": \"100\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/checkout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"checkout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Checkout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 7|7TQCgHjoPeCbTg8f2d5EVIWfkKS1R5In4E7vXXkM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categories_service\": \"ambilsendiri\",\r\n    \"address\": \"Jombang\",\r\n    \"time_pickup_delivery\": \"20/04/2021\",\r\n    \"items\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"quantity\" : \"2\"\r\n        }\r\n    ],\r\n    \"status\": \"pending\",\r\n    \"total_price\": \"2000\",\r\n    \"shipping_price\": \"100\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/checkout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"checkout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 07:39:55 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 07:39:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.19"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Transaksi berhasil\"\n    },\n    \"data\": {\n        \"users_id\": 1,\n        \"categories_service\": \"ambilsendiri\",\n        \"time_pickup_delivery\": \"20/04/2021\",\n        \"address\": \"Jombang\",\n        \"total_price\": \"2000\",\n        \"shipping_price\": \"100\",\n        \"status\": \"pending\",\n        \"updated_at\": \"2022-04-11T07:39:55.000000Z\",\n        \"created_at\": \"2022-04-11T07:39:55.000000Z\",\n        \"id\": 1,\n        \"items\": [\n            {\n                \"id\": 1,\n                \"users_id\": 1,\n                \"products_id\": 1,\n                \"transactions_id\": 1,\n                \"quantity\": 2,\n                \"created_at\": \"2022-04-11T07:39:55.000000Z\",\n                \"updated_at\": \"2022-04-11T07:39:55.000000Z\",\n                \"product\": {\n                    \"id\": 1,\n                    \"name\": \"Deep Clean\",\n                    \"price\": 34000,\n                    \"description\": \"Tidak ada\",\n                    \"url\": null,\n                    \"categories_id\": 1,\n                    \"deleted_at\": null,\n                    \"created_at\": \"2022-04-11T13:06:34.000000Z\",\n                    \"updated_at\": \"2022-04-11T13:06:34.000000Z\"\n                }\n            }\n        ]\n    }\n}"
+				}
+			]
+		}
+	]
+}
