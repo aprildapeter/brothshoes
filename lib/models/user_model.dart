@@ -26,7 +26,7 @@ class UserModel {
     phone = json['phone'];
     address = json['address'];
     roles = json['roles'];
-    profilePhotoUrl = json['img_url'];
+    profilePhotoUrl = json['url'];
     token = json['access_token'];
   }
 
