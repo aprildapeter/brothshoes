@@ -40,7 +40,7 @@ class _SigninPageState extends State<SigninPage> {
         }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             backgroundColor: Colors.amber,
             content: Text(
               'Gagal Login!',
@@ -56,11 +56,9 @@ class _SigninPageState extends State<SigninPage> {
     }
 
     Widget Header() {
-      return Container(
-        child: Text(
-          'Login',
-          style: button1TextStyle.copyWith(fontSize: 50, fontWeight: bold),
-        ),
+      return Text(
+        'Login',
+        style: button1TextStyle.copyWith(fontSize: 50, fontWeight: bold),
       );
     }
 
@@ -111,7 +109,7 @@ class _SigninPageState extends State<SigninPage> {
     Widget InputPass() {
       return Container(
         // height: 50,
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: TextFormField(
           controller: passController,
           obscureText: _securetext,
@@ -154,7 +152,7 @@ class _SigninPageState extends State<SigninPage> {
     Widget ButtonLogin() {
       return Container(
         height: 50,
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         width: double.infinity,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -174,11 +172,11 @@ class _SigninPageState extends State<SigninPage> {
 
     Widget Footer() {
       return Container(
-        margin: EdgeInsets.only(top: 15),
+        margin: const EdgeInsets.only(top: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Belum punya akun ? ',
+            Text('Belum punya akun? ',
                 style: button1TextStyle.copyWith(
                     fontSize: 16, fontWeight: medium)),
             TextButton(
@@ -203,18 +201,16 @@ class _SigninPageState extends State<SigninPage> {
         child: SingleChildScrollView(
             child: Padding(
           padding: const EdgeInsets.all(30.0),
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Header(),
-                Hero(),
-                InputEmail(),
-                InputPass(),
-                isLoading ? LoadingButton() : ButtonLogin(),
-                Footer()
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Header(),
+              Hero(),
+              InputEmail(),
+              InputPass(),
+              isLoading ? const LoadingButton() : ButtonLogin(),
+              Footer()
+            ],
           ),
         )),
       ),

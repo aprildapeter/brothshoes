@@ -17,7 +17,7 @@ class HomePageAdmin extends StatelessWidget {
 
     Widget header() {
       return Container(
-        margin: EdgeInsets.only(left: 30),
+        margin: const EdgeInsets.only(left: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,7 +26,7 @@ class HomePageAdmin extends StatelessWidget {
               backgroundImage: NetworkImage(user.profilePhotoUrl),
               radius: 30,
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -60,8 +60,8 @@ class HomePageAdmin extends StatelessWidget {
     Widget hero() {
       return Container(
         height: 136,
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        margin: EdgeInsets.only(right: 30, left: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        margin: const EdgeInsets.only(right: 30, left: 30),
         decoration: BoxDecoration(
           color: primaryColor,
           borderRadius: BorderRadius.circular(10),
@@ -70,7 +70,7 @@ class HomePageAdmin extends StatelessWidget {
                 color: shadow2,
                 spreadRadius: 1,
                 blurRadius: 4,
-                offset: Offset(0, 4))
+                offset: const Offset(0, 4))
           ],
         ),
         child: Row(
@@ -114,7 +114,7 @@ class HomePageAdmin extends StatelessWidget {
 
     Widget LayananTitle() {
       return Container(
-        margin: EdgeInsets.only(top: 30, bottom: 10, left: 30),
+        margin: const EdgeInsets.only(top: 30, bottom: 10, left: 30),
         child: Text(
           'Layanan',
           style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
@@ -123,23 +123,21 @@ class HomePageAdmin extends StatelessWidget {
     }
 
     Widget Layanan() {
-      return Container(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              SizedBox(
-                width: 30,
-              ),
-              Row(
-                children: productProvider.products
-                    .map(
-                      (product) => LayananCard(product),
-                    )
-                    .toList(),
-              ),
-            ],
-          ),
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 30,
+            ),
+            Row(
+              children: productProvider.products
+                  .map(
+                    (product) => LayananCard(product),
+                  )
+                  .toList(),
+            ),
+          ],
         ),
       );
     }
@@ -177,44 +175,44 @@ class HomePageAdmin extends StatelessWidget {
     }
 
     Widget TipsTrick() {
-      return Container(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(children: [
-            SizedBox(
-              width: 30,
-            ),
-            Row(
-              children: [
-                TipsCard(),
-                TipsCard(),
-              ],
-            )
-          ]),
-        ),
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          const SizedBox(
+            width: 30,
+          ),
+          Row(
+            children: [
+              const TipsCard(),
+              const TipsCard(),
+            ],
+          )
+        ]),
       );
     }
 
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 30, bottom: 30),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            header(),
-            SizedBox(
-              height: 30,
-            ),
-            hero(),
-            LayananTitle(),
-            Layanan(),
-            PesananAktif(),
-            OrderTile(),
-            TrickTitle(),
-            TipsTrick()
-          ]),
-        )
-      ],
+    return SafeArea(
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30, bottom: 30),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              header(),
+              // const SizedBox(
+              //   height: 30,
+              // ),
+              //hero(),
+              LayananTitle(),
+              Layanan(),
+              PesananAktif(),
+              OrderTile(),
+              TrickTitle(),
+              TipsTrick()
+            ]),
+          )
+        ],
+      ),
     );
   }
 }

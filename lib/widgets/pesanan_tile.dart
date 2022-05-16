@@ -7,14 +7,14 @@ class PesananTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 25,
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           Column(
@@ -30,7 +30,7 @@ class PesananTile extends StatelessWidget {
               ),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             'menunggu',
             style: warningTextStyle,

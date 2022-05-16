@@ -9,7 +9,7 @@ class TransactionProvider with ChangeNotifier {
 
   List<TransactionModel> get transactions => _transactions;
 
-  set products(List<TransactionModel> transactions) {
+  set transactions(List<TransactionModel> transactions) {
     _transactions = transactions;
     notifyListeners();
   }
@@ -19,7 +19,7 @@ class TransactionProvider with ChangeNotifier {
       List<TransactionModel> transactions =
           await TransactionService().getTransaksi(token);
 
-     _transactions = transactions;
+      _transactions = transactions;
       return true;
     } catch (e) {
       print(e);

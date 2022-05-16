@@ -13,15 +13,15 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
 
     Widget Histori() {
       return Container(
-        margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+        margin: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              'histori',
+              'riwayat',
               style: secondaryTextStyle,
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Icon(
@@ -34,12 +34,10 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
     }
 
     Widget content() {
-      return Container(
-        margin: EdgeInsets.all(5),
-        child: Column(children: [
-          HistoriTransaksiAdminCard(),
-          HistoriTransaksiAdminCard(),
-        ]),
+      return Column(
+        children: transactionProvider.transactions
+            .map((transaction) => HistoriTransaksiAdminCard(transaction))
+            .toList(),
       );
     }
 
@@ -58,7 +56,10 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
     return Scaffold(
       appBar: header(),
       body: ListView(
-        children: [Histori(), content()],
+        children: [
+          Histori(),
+          content(),
+        ],
       ),
     );
   }

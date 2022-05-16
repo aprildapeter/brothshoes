@@ -39,46 +39,36 @@ class _MainPageAdminState extends State<MainPageAdmin> {
           // shape: CircularNotchedRectangle(),
           // notchMargin: 10,
           // clipBehavior: Clip.antiAlias,
-          child: Container(
-            child: BottomNavigationBar(
-              currentIndex: currentIndex,
-              onTap: (value) {
-                setState(() {
-                  currentIndex = value;
-                });
-              },
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: primaryColor,
-              unselectedItemColor: whiteColor,
-              selectedItemColor: secondaryColor,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Container(
-                      // margin: EdgeInsets.only(top: 10),
-                      child: Icon(Icons.home)),
-                  label: 'Beranda',
-                  backgroundColor: whiteColor,
-                ),
-                BottomNavigationBarItem(
-                  icon: Container(
-                      // margin: EdgeInsets.only(top: 10),
-                      child: Icon(Icons.list)),
-                  label: 'Pesanan',
-                ),
-                BottomNavigationBarItem(
-                  icon: Container(
-                      // margin: EdgeInsets.only(top: 10),
-                      child: Icon(Icons.shopping_basket)),
-                  label: 'Keranjang',
-                ),
-                BottomNavigationBarItem(
-                  icon: Container(
-                      // margin: EdgeInsets.only(top: 10),
-                      child: Icon(Icons.person)),
-                  label: 'Profil',
-                ),
-              ],
-            ),
+          child: BottomNavigationBar(
+            currentIndex: currentIndex,
+            onTap: (value) {
+              setState(() {
+                currentIndex = value;
+              });
+            },
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: primaryColor,
+            unselectedItemColor: whiteColor,
+            selectedItemColor: secondaryColor,
+            items: [
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.home),
+                label: 'Beranda',
+                backgroundColor: whiteColor,
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.list),
+                label: 'Pesanan',
+              ),
+              // const BottomNavigationBarItem(
+              //   icon: Icon(Icons.shopping_basket),
+              //   label: 'Keranjang',
+              // ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Profil',
+              ),
+            ],
           ),
         ),
       );
@@ -93,9 +83,6 @@ class _MainPageAdminState extends State<MainPageAdmin> {
           return TransaksiHistoriPageAdmin();
           break;
         case 2:
-          return CartPage();
-          break;
-        case 3:
           return ProfilePageAdmin();
           break;
         default:
