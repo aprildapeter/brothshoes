@@ -91,7 +91,7 @@ class TransactionService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data']['data']['items'];
+      List data = jsonDecode(response.body)['data']['data'];
       List<TransactionModel> transaksi = [];
 
       for (var item in data) {

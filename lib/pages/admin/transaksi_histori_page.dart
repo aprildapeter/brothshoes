@@ -35,7 +35,7 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
 
     Widget content() {
       return SingleChildScrollView(
-        child: Row(
+        child: Column(
           children: transactionProvider.transactions
               .map((transaction) => HistoriTransaksiAdminCard(transaction))
               .toList(),
