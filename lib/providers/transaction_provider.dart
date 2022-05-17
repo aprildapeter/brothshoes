@@ -14,18 +14,44 @@ class TransactionProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> getTransaksi({UserModel token}) async {
+  Future<void> getTransaksi({UserModel token}) async {
     try {
       List<TransactionModel> transactions =
           await TransactionService().getTransaksi(token);
 
       _transactions = transactions;
-      return true;
+      //return true;
     } catch (e) {
       print(e);
-      return false;
+      //return false;
     }
   }
+
+  Future<void> getAllTransaksi() async {
+    try {
+      List<TransactionModel> transactions =
+          await TransactionService().getAllTransaksi();
+
+      _transactions = transactions;
+      //return true;
+    } catch (e) {
+      print(e);
+      //return false;
+    }
+  }
+
+  // Future<bool> getAllTransaksi() async {
+  //   try {
+  //     List<TransactionModel> transactions =
+  //         await TransactionService().getAllTransaksi();
+
+  //     _transactions = transactions;
+  //     return true;
+  //   } catch (e) {
+  //     print(e);
+  //     return false;
+  //   }
+  // }
 
   // Future<void> getTransaksi(String token) async {
   //   try {

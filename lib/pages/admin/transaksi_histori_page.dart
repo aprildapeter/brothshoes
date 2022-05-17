@@ -34,10 +34,12 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
     }
 
     Widget content() {
-      return Column(
-        children: transactionProvider.transactions
-            .map((transaction) => HistoriTransaksiAdminCard(transaction))
-            .toList(),
+      return SingleChildScrollView(
+        child: Row(
+          children: transactionProvider.transactions
+              .map((transaction) => HistoriTransaksiAdminCard(transaction))
+              .toList(),
+        ),
       );
     }
 
@@ -47,7 +49,7 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Pesananmu',
+          'Pesanan',
           style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
         ),
       );
@@ -55,7 +57,7 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
 
     return Scaffold(
       appBar: header(),
-      body: ListView(
+      body: Column(
         children: [
           Histori(),
           content(),

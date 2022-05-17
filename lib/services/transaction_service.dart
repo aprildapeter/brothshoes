@@ -65,6 +65,32 @@ class TransactionService {
     print(response.body);
 
     if (response.statusCode == 200) {
+      List data = jsonDecode(response.body)['data']['data'];
+      List<TransactionModel> transaksi = [];
+
+      for (var item in data) {
+        transaksi.add(TransactionModel.fromJson(item));
+      }
+      return transaksi;
+    } else {
+      throw Exception('Gagal Melakukan Checkout!');
+    }
+  }
+
+  Future<List<TransactionModel>> getAllTransaksi() async {
+    var url = '$baseUrl/transactionsall';
+    var headers = {
+      'Content-Type': 'application/json',
+    };
+
+    var response = await http.get(
+      url,
+      headers: headers,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data']['data']['items'];
       List<TransactionModel> transaksi = [];
 
