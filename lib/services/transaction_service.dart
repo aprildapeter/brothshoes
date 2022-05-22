@@ -8,7 +8,14 @@ class TransactionService {
   String baseUrl = 'http://brothshoes.otwlulus.com/public/api';
 
   Future<bool> checkout(
-      String token, List<CartModel> carts, double totalPrice) async {
+    String token,
+    List<CartModel> carts,
+    String add,
+    String timePick,
+    String detailLoc,
+    double totalPrice,
+    double ongkir,
+  ) async {
     var url = '$baseUrl/checkout';
     var headers = {
       'Content-Type': 'application/json',
@@ -16,11 +23,10 @@ class TransactionService {
     };
     var body = jsonEncode(
       {
-        'categories_service': 'pickupdelivery',
-        'address': 'Jombang',
-        'time_pickup_delivery': '20/04/2021',
-        'patokan': 'no.180',
-        'detail_lokasi': 'dekat warung pak haji',
+        'categories_service': "pickup&delivery",
+        'address': add,
+        'time_pickup_delivery': timePick,
+        'detail_lokasi': detailLoc,
         'items': carts
             .map(
               (cart) => {
@@ -31,7 +37,7 @@ class TransactionService {
             .toList(),
         'status': "pending",
         'total_price': totalPrice,
-        'shipping_price': 0,
+        'shipping_price': ongkir,
       },
     );
 

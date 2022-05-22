@@ -8,6 +8,8 @@ import 'package:brothshoes/widgets/informasi_pengguna-card.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:brothshoes/theme.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -20,6 +22,102 @@ class CheckoutPage extends StatefulWidget {
 DateTime selectDate = DateTime.now();
 
 class _CheckoutPageState extends State<CheckoutPage> {
+  Position _currentPosition;
+  String _currentAddress;
+
+  TextEditingController _detailLokasiController = TextEditingController();
+
+  double _ongkir;
+  String _jarak;
+
+  final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
+
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handlePermission();
+
+    if (!hasPermission) {
+      return;
+    }
+
+    _currentPosition = await _geolocatorPlatform.getCurrentPosition(
+        locationSettings: const LocationSettings(
+      accuracy: LocationAccuracy.high,
+    ));
+
+    // print(_currentPosition.latitude.toString() +
+    //     ", " +
+    //     _currentPosition.longitude.toString());
+
+    String address = await getAddressFromLatLong(_currentPosition);
+    print(address);
+
+    double dist = _geolocatorPlatform.distanceBetween(-7.5536963, 112.2363532,
+            _currentPosition.latitude, _currentPosition.longitude) /
+        1000;
+
+    print(dist.toString());
+    setState(() {
+      _currentAddress = address;
+      _jarak = dist.toStringAsFixed(2);
+
+      if (dist > 10) {
+        double jarakBaru = dist - 10;
+
+        _ongkir = jarakBaru * 1000;
+      } else {
+        _ongkir = 0;
+      }
+    });
+  }
+
+  Future<String> getAddressFromLatLong(Position position) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    //print(placemarks);
+    Placemark place = placemarks[0];
+    return '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+  }
+
+  Future<bool> _handlePermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await _geolocatorPlatform.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+
+      return false;
+    }
+
+    permission = await _geolocatorPlatform.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await _geolocatorPlatform.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+
+        return false;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+
+      return false;
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
@@ -32,7 +130,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
       if (await transactionProvider.checkout(
         authProvider.user.token,
         cartProvider.carts,
+        _currentAddress,
+        selectDate.toString(),
+        _detailLokasiController.text,
         cartProvider.totalPrice(),
+        _ongkir,
       )) {
         cartProvider.carts = [];
         Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
@@ -53,7 +155,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   style: primaryTextStyle.copyWith(
                       fontSize: 20, fontWeight: semibold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -63,7 +165,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     Text(user.name, style: secondaryTextStyle),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
@@ -94,13 +196,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       fontSize: 20, fontWeight: semibold),
                 ),
               ]),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Jadwal Pickup', style: secondaryTextStyle),
+                  Text('Jadwal Pickup',
+                      style: secondaryTextStyle?.copyWith(
+                          fontWeight: FontWeight.bold)),
                   Row(
                     children: [
                       Container(
@@ -133,24 +237,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Patokan', style: secondaryTextStyle),
-                  Text('Patokan', style: secondaryTextStyle),
-                ],
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Detail Lokasi', style: secondaryTextStyle),
-                  Text('Detail Lokasi', style: secondaryTextStyle),
-                ],
-              ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Column(
@@ -158,45 +245,61 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 children: [
                   Text(
                     'Alamat Pickup',
-                    style: secondaryTextStyle,
+                    style: secondaryTextStyle?.copyWith(
+                        fontWeight: FontWeight.bold),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'Alamat Pickup',
-                        style: subTextStyle.copyWith(fontSize: 10),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.location_on,
-                        color: dangerText,
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          flex: 4,
-                          child: Container(
-                            child: Text(
-                              'Jl. Raya Tidar No.100, Karangbesuki, Kec.Suk',
-                              overflow: TextOverflow.ellipsis,
-                              style: secondaryTextStyle,
-                            ),
-                          ),
+                  _currentAddress == null
+                      ? const SizedBox()
+                      : Text(
+                          _currentAddress,
+                          overflow: TextOverflow.visible,
+                          style: secondaryTextStyle,
                         ),
-                        Flexible(
-                            flex: 0,
-                            child: Container(child: Icon(Icons.arrow_right))),
-                      ],
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () async {
+                      _getCurrentPosition();
+                    },
+                    child: Text(
+                      _currentAddress == null
+                          ? 'Dapatkan lokasi sekarang'
+                          : "Ulangi ambil lokasi",
+                      style: whiteTextStyle.copyWith(fontSize: 15),
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 10),
+              Text('Detail Lokasi',
+                  style: secondaryTextStyle?.copyWith(
+                      fontWeight: FontWeight.bold)),
+              const SizedBox(height: 5),
+              TextFormField(
+                controller: _detailLokasiController,
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  hintText: 'Masukan detail lokasi',
+                  hintStyle: inputTextStyle,
+                  fillColor: Colors.green[50],
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                ),
+                keyboardType: TextInputType.text,
+              ),
+              const SizedBox(
+                height: 10,
               ),
             ],
           ),
@@ -220,7 +323,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       fontSize: 20, fontWeight: semibold),
                 ),
               ]),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Column(
@@ -228,15 +331,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Pilih Pembayaran',
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: semibold,
-                    ),
-                  ),
-                  Text(
                     'Metode Pembayaran',
                     style: secondaryTextStyle.copyWith(
-                      fontSize: 10,
+                      fontSize: 15,
                     ),
                   ),
                   Row(
@@ -245,9 +342,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Text(
                         'COD (Bayar di tempat)',
                         style: secondaryTextStyle.copyWith(),
-                      ),
-                      Icon(
-                        Icons.arrow_right,
                       ),
                     ],
                   ),
@@ -260,27 +354,31 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Subtotal', style: secondaryTextStyle),
-                  Text('Rp ${cartProvider.totalPrice()}',
+                  Text('Rp. ${cartProvider.totalPrice()}',
                       style: secondaryTextStyle),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Ongkir', style: secondaryTextStyle),
-                  Text('Rp 0', style: secondaryTextStyle),
+                  Text(
+                      _ongkir == null
+                          ? "Rp. 0"
+                          : "Rp. " + _ongkir.toStringAsFixed(2).toString(),
+                      style: secondaryTextStyle),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               DottedLine(
                 dashColor: shadow2,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -288,7 +386,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 children: [
                   Text('Total',
                       style: secondaryTextStyle.copyWith(fontWeight: bold)),
-                  Text('Rp ${cartProvider.totalPrice()}',
+                  Text(
+                      _ongkir == null
+                          ? "-"
+                          : 'Rp. ' +
+                              (cartProvider.totalPrice() + _ongkir)
+                                  .toStringAsFixed(2),
                       style: secondaryTextStyle.copyWith(fontWeight: bold)),
                 ],
               ),
@@ -313,7 +416,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     Widget content() {
       return ListView(
-        padding: EdgeInsets.only(top: 30, left: 30, right: 30, bottom: 20),
+        padding:
+            const EdgeInsets.only(top: 30, left: 30, right: 30, bottom: 20),
         children: [
           // NOTE : LIST ITEM
           Column(
@@ -324,7 +428,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 style: primaryTextStyle.copyWith(
                     fontSize: 20, fontWeight: semibold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Column(
@@ -336,13 +440,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Divider(
             color: shadow2,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           informasiPengguna(),
@@ -363,20 +467,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
             Padding(
               padding: const EdgeInsets.only(
                   bottom: 20, left: 30, right: 30, top: 20),
-              child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
-                      onPressed: handleCheckout,
-                      child: Text(
-                        'Checkout Sekarang',
-                        style: whiteTextStyle.copyWith(
-                            fontSize: 20, fontWeight: semibold),
-                      ))),
+              child: SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                  onPressed: handleCheckout,
+                  child: Text(
+                    'Checkout Sekarang',
+                    style: whiteTextStyle.copyWith(
+                        fontSize: 20, fontWeight: semibold),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

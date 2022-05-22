@@ -12,7 +12,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      CartProvider cartProvider = Provider.of<CartProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     Widget header() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -35,24 +35,24 @@ class CartPage extends StatelessWidget {
             color: primaryText,
             size: 100,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Text('Keranjang masih kosong !!!',
               style: secondaryTextStyle.copyWith(
                   fontSize: 20, fontWeight: medium)),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text('Silakan melakukan transaksi terlebih dulu',
               style: subTextStyle.copyWith(fontSize: 14, fontWeight: medium)),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: primaryColor,
-                fixedSize: Size(120, 50),
+                fixedSize: const Size(120, 50),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
               ),
@@ -68,61 +68,62 @@ class CartPage extends StatelessWidget {
 
     Widget content() {
       return Expanded(
-          child: Container(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-          children: [CartCard()],
-        ),
+          child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+        children: [
+          const CartCard(),
+        ],
       ));
     }
 
     Widget customBottomNav() {
       return Container(
-         decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: shadow2))
-        ),
+        decoration:
+            BoxDecoration(border: Border(top: BorderSide(color: shadow2))),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
             Padding(
-              padding: const EdgeInsets.only(bottom: 20, left: 30, right: 30, top: 10),
+              padding: const EdgeInsets.only(
+                  bottom: 70, left: 30, right: 30, top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Subtotal',
-                          style: primaryTextStyle,
+                  Column(
+                    children: [
+                      Text(
+                        'Subtotal',
+                        style: primaryTextStyle,
+                      ),
+                      Text(
+                        'Rp ${cartProvider.totalPrice()}',
+                        style: button2TextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: semibold,
                         ),
-                        Text(
-                          'Rp ${cartProvider.totalPrice()}',
-                          style: button2TextStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: semibold,
-                          ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ],
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/checkout');
+                      },
+                      child: Text(
+                        'Checkout',
+                        style: whiteTextStyle.copyWith(
+                            fontSize: 20, fontWeight: semibold),
+                      ),
                     ),
                   ),
-                  Container(
-                      height: 50,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: primaryColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/checkout');
-                          },
-                          child: Text(
-                            'Checkout',
-                            style: whiteTextStyle.copyWith(
-                                fontSize: 20, fontWeight: semibold),
-                          )))
                 ],
               ),
             ),
@@ -132,11 +133,13 @@ class CartPage extends StatelessWidget {
     }
 
     return Scaffold(
-      bottomNavigationBar: cartProvider.carts.length == 0 ? SizedBox(): customBottomNav(),
+      bottomNavigationBar:
+          cartProvider.carts.isEmpty ? const SizedBox() : customBottomNav(),
       body: Column(
         children: [
-          header(), 
-          cartProvider.carts.length == 0 ? empetyCart() : content()],
+          header(),
+          cartProvider.carts.isEmpty ? empetyCart() : content()
+        ],
       ),
     );
   }

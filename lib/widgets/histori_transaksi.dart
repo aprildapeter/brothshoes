@@ -122,21 +122,6 @@ class HistoriTransaksiCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(top: 10),
-                    height: 40,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        onPressed: () {},
-                        child: Text(
-                          'Batalkan',
-                          style: whiteTextStyle.copyWith(
-                              fontSize: 20, fontWeight: semibold),
-                        )))
               ],
             )),
       ),

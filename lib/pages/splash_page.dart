@@ -23,8 +23,7 @@ class _SplashPageState extends State<SplashPage> {
 
   getInit() async {
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
-    await Provider.of<TransactionProvider>(context, listen: false)
-        .getAllTransaksi();
+
     Navigator.pushNamed(context, '/sign-in');
   }
 

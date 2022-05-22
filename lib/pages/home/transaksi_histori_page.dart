@@ -1,5 +1,6 @@
 import 'package:brothshoes/providers/transaction_provider.dart';
 import 'package:brothshoes/widgets/histori_transaksi.dart';
+import 'package:brothshoes/widgets/histori_transaksi_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:brothshoes/theme.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ class TransaksiHistoriPage extends StatelessWidget {
   Widget build(BuildContext context) {
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context);
+
     Widget Histori() {
       return Container(
         margin: EdgeInsets.only(top: 20, left: 20, right: 20),
@@ -32,9 +34,12 @@ class TransaksiHistoriPage extends StatelessWidget {
     }
 
     Widget content() {
-      return Container(
-        margin: EdgeInsets.all(20),
-        child: Column(children: [HistoriTransaksiCard()]),
+      return SingleChildScrollView(
+        child: Column(
+          children: transactionProvider.transactions
+              .map((transaction) => HistoriTransaksiAdminCard(transaction))
+              .toList(),
+        ),
       );
     }
 
@@ -53,7 +58,10 @@ class TransaksiHistoriPage extends StatelessWidget {
     return Scaffold(
       appBar: header(),
       body: ListView(
-        children: [Histori(), content()],
+        children: [
+          Histori(),
+          content(),
+        ],
       ),
     );
   }

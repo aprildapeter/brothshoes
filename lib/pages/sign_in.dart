@@ -6,6 +6,8 @@ import 'package:brothshoes/widgets/loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/transaction_provider.dart';
+
 class SigninPage extends StatefulWidget {
   const SigninPage({Key key}) : super(key: key);
 
@@ -34,8 +36,14 @@ class _SigninPageState extends State<SigninPage> {
         password: passController.text,
       )) {
         if (authProvider.user.roles == 'pelanggan') {
+          await Provider.of<TransactionProvider>(context, listen: false)
+              .getTransaksi();
+
           Navigator.pushNamed(context, '/home');
         } else {
+          await Provider.of<TransactionProvider>(context, listen: false)
+              .getAllTransaksi();
+
           Navigator.pushNamed(context, '/admin');
         }
       } else {

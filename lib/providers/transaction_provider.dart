@@ -64,9 +64,24 @@ class TransactionProvider with ChangeNotifier {
   // }
 
   Future<bool> checkout(
-      String token, List<CartModel> carts, double totalPrice) async {
+    String token,
+    List<CartModel> carts,
+    String add,
+    String timePick,
+    String detailLoc,
+    double totalPrice,
+    double ongkir,
+  ) async {
     try {
-      if (await TransactionService().checkout(token, carts, totalPrice)) {
+      if (await TransactionService().checkout(
+        token,
+        carts,
+        add,
+        timePick,
+        detailLoc,
+        totalPrice,
+        ongkir,
+      )) {
         return true;
       } else {
         return false;
