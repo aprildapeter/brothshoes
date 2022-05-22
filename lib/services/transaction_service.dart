@@ -25,6 +25,7 @@ class TransactionService {
       {
         'categories_service': "pickup&delivery",
         'address': add,
+        'patokan': "tes",
         'time_pickup_delivery': timePick,
         'detail_lokasi': detailLoc,
         'items': carts
