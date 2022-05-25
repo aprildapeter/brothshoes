@@ -1,8 +1,10 @@
+import 'package:brothshoes/models/transaksi_product.dart';
+import 'package:brothshoes/models/user_model.dart';
+
 class TransactionModel {
   int id;
-  int iduser;
+  UserModel iduser;
   String address;
-  String patokan;
   String detail_lokasi;
   String categories_service;
   String time_pickup_delivery;
@@ -15,7 +17,6 @@ class TransactionModel {
     this.id,
     this.iduser,
     this.address,
-    this.patokan,
     this.detail_lokasi,
     this.categories_service,
     this.time_pickup_delivery,
@@ -27,9 +28,8 @@ class TransactionModel {
 
   TransactionModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    iduser = json['id_user'];
+    iduser = UserModel.fromJson(json['user']);
     address = json['address'];
-    patokan = json['patokan'];
     detail_lokasi = json['detail_lokasi'];
     categories_service = json['categories_service'];
     time_pickup_delivery = json['time_pickup_delivery'];
@@ -42,9 +42,8 @@ class TransactionModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'id_user': iduser,
+      'user': iduser.toJson(),
       'address': address,
-      'patokan': patokan,
       'detail_lokasi': detail_lokasi,
       'categories_service': categories_service,
       'time_pickup_delivery': time_pickup_delivery,

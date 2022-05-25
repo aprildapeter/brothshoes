@@ -23,9 +23,8 @@ class TransactionService {
     };
     var body = jsonEncode(
       {
-        'categories_service': "pickup&delivery",
+        'categories_service': "pickup & delivery",
         'address': add,
-        'patokan': "tes",
         'time_pickup_delivery': timePick,
         'detail_lokasi': detailLoc,
         'items': carts
@@ -72,7 +71,7 @@ class TransactionService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data']['data'];
+      List data = jsonDecode(response.body)['data']['data']['items'];
       List<TransactionModel> transaksi = [];
 
       for (var item in data) {

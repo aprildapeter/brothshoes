@@ -70,7 +70,7 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                                   fontWeight: light),
                             ),
                             Text(
-                              transactionModel.iduser.toString(),
+                              transactionModel.iduser.name,
                               style: secondaryTextStyle.copyWith(
                                   fontWeight: light),
                             ),
