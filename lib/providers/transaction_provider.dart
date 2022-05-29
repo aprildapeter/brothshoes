@@ -91,4 +91,18 @@ class TransactionProvider with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> updateStatusPesanan(
+      String token, String id, String status) async {
+    try {
+      if (await TransactionService().updateStatusPesanan(token, id, status)) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 }

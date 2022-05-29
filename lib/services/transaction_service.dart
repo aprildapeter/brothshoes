@@ -56,6 +56,34 @@ class TransactionService {
     }
   }
 
+  Future<bool> updateStatusPesanan(
+      String token, String id, String status) async {
+    var url = '$baseUrl/transactions?id=$id';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    };
+    var body = jsonEncode(
+      {
+        'status': status,
+      },
+    );
+
+    var response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception('Gagal update!');
+    }
+  }
+
   Future<List<TransactionModel>> getTransaksi(UserModel token) async {
     var url = '$baseUrl/transactions';
     var headers = {

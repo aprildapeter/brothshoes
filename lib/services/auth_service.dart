@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:brothshoes/models/user_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   String baseUrl = 'http://brothshoes.otwlulus.com/public/api';
@@ -67,10 +68,18 @@ class AuthService {
       UserModel user = UserModel.fromJson(data['user']);
       user.token = 'Bearer ' + data['access_token'];
 
+      saveToken(user.token);
+
       return user;
     } else {
       throw Exception('Gagal Login');
     }
+  }
+
+  saveToken(String t) async {
+    var prefs = await SharedPreferences.getInstance();
+
+    prefs.setString("token", t);
   }
 
   Future<UserModel> logout({

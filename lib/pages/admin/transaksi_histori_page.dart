@@ -34,32 +34,40 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
     }
 
     Widget content() {
-      return  Column(
-          children: transactionProvider.transactions
-              .map((transaction) => HistoriTransaksiAdminCard(transaction))
-              .toList(),
+      return Column(
+        children: transactionProvider.transactions
+            .map((transaction) => HistoriTransaksiAdminCard(transaction))
+            .toList(),
       );
     }
 
     Widget header() {
       return AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: primaryColor,
+        automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
         title: Text(
           'Pesanan',
-          style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
+          style: primaryTextStyle.copyWith(
+              fontSize: 20, fontWeight: semibold, color: Colors.white),
         ),
       );
     }
 
     return Scaffold(
       appBar: header(),
-      body: ListView(
-        children: [
-          Histori(),
-          content(),
-        ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Provider.of<TransactionProvider>(context, listen: false)
+              .getAllTransaksi();
+        },
+        child: ListView(
+          children: [
+            Histori(),
+            content(),
+          ],
+        ),
       ),
     );
   }
