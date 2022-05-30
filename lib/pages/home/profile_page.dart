@@ -55,7 +55,7 @@ TextEditingController nameController = TextEditingController(text: '');
         ),
         child: Row(
           children: [
-            ClipOval(child: Image.network(user.profilePhotoUrl)),
+            ClipOval(child: Image.network(user.url)),
             SizedBox(
               width: 15,
             ),

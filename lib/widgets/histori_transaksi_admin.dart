@@ -46,12 +46,19 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/sepatu.jpg',
+                    ClipOval(
+                        child: Image.network(
+                      transactionModel.items[0].product.url,
                       width: MediaQuery.of(context).size.width * 0.3,
-                    ),
+                      fit: BoxFit.cover,
+                    )),
+                    // Image.network(
+                    //   transactionModel.items[0].product.url,
+                    //   width: MediaQuery.of(context).size.width * 0.3,
+                    // )
                     const SizedBox(
                       width: 15,
                     ),
