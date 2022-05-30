@@ -1,4 +1,5 @@
 import 'package:brothshoes/models/transaction_model.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,8 +52,7 @@ class _DetailPesananState extends State<DetailPesanan> {
             widget.transactionModel.id.toString(), "selesai");
 
         break;
-        break;
-      case "dikirimbesok":
+      case "diambilbesok":
         transactionProvider.updateStatusPesanan(prefs.getString("token"),
             widget.transactionModel.id.toString(), "diambilbesok");
 
@@ -83,6 +83,195 @@ class _DetailPesananState extends State<DetailPesanan> {
   @override
   Widget build(BuildContext context) {
     transactionProvider = Provider.of<TransactionProvider>(context);
+    Widget informasiPengguna() {
+      return Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Informasi Pengguna',
+                  style: primaryTextStyle.copyWith(
+                      fontSize: 20, fontWeight: semibold),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Nama', style: secondaryTextStyle),
+                    Text(widget.transactionModel.user.name,
+                        style: secondaryTextStyle),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('No. Tlpn', style: secondaryTextStyle),
+                    Text(widget.transactionModel.user.phone,
+                        style: secondaryTextStyle),
+                  ],
+                ),
+              ],
+            )),
+      );
+    }
+
+    Widget InformasiPickup() {
+      return Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Text(
+                  'Informasi Pickup & Delivery',
+                  style: primaryTextStyle.copyWith(
+                      fontSize: 20, fontWeight: semibold),
+                ),
+              ]),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Jadwal Pickup', style: secondaryTextStyle?.copyWith()),
+                  Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        // width: 150,
+
+                        child: Text(widget.transactionModel.timePickupDelivery,
+                            // overflow: TextOverflow.ellipsis,
+                            style: secondaryTextStyle),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                'Alamat Pickup :',
+                style: secondaryTextStyle?.copyWith(),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Wrap(
+                children: [
+                  Text(
+                    widget.transactionModel.address,
+                    style: secondaryTextStyle?.copyWith(),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text('Detail Lokasi :', style: secondaryTextStyle?.copyWith()),
+              SizedBox(
+                height: 10,
+              ),
+              Wrap(
+                children: [
+                  Text(widget.transactionModel.detailLokasi,
+                      style: secondaryTextStyle?.copyWith()),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget InformasiPembayaran() {
+      return Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Text(
+                  'Informasi Pembayaran',
+                  style: primaryTextStyle.copyWith(
+                      fontSize: 20, fontWeight: semibold),
+                ),
+              ]),
+              const SizedBox(
+                height: 10,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Metode Pembayaran',
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 15,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'COD (Bayar di tempat)',
+                        style: secondaryTextStyle.copyWith(),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    color: dateText,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Ongkir', style: secondaryTextStyle),
+                  Text(widget.transactionModel.shippingPrice,
+                      style: secondaryTextStyle),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DottedLine(
+                dashColor: shadow2,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Total', style: secondaryTextStyle),
+                  Text('Rp. ' + widget.transactionModel.totalPrice,
+                      style: secondaryTextStyle),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -101,155 +290,173 @@ class _DetailPesananState extends State<DetailPesanan> {
         ),
       ),
       body: ListView(
+        padding: EdgeInsets.all(20),
         children: [
-          Image.asset(
-            'assets/images/sepatu.jpg',
-            width: MediaQuery.of(context).size.width * 0.3,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'List Barang',
+                style: primaryTextStyle.copyWith(
+                    fontSize: 20, fontWeight: semibold),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(widget.transactionModel.items[0].id.toString())
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Status',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.status,
-                      style: warningTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Nama',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.user.name,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Kategori',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Treatment',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.totalPrice,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Status',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.status,
-                      style: warningTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Nama',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.user.name,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Kategori',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Treatment',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.totalPrice,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          informasiPengguna(),
+          InformasiPickup(),
+          InformasiPembayaran(),
+          // Image.asset(
+          //   'assets/images/sepatu.jpg',
+          //   width: MediaQuery.of(context).size.width * 0.3,
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.all(15),
+          //   child: Column(
+          //     children: [
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Status',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.status,
+          //             style: warningTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Nama',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.user.name,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Kategori',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.categoriesService,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Treatment',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.categoriesService,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Total',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.totalPrice,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.all(15),
+          //   child: Column(
+          //     children: [
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Status',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.status,
+          //             style: warningTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Nama',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.user.name,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Kategori',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.categoriesService,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Treatment',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.categoriesService,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Total',
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //           Text(
+          //             widget.transactionModel.totalPrice,
+          //             style: secondaryTextStyle.copyWith(fontWeight: light),
+          //           ),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.all(10),
             child: isLoading
@@ -351,25 +558,32 @@ class _DetailPesananState extends State<DetailPesanan> {
                               ),
                             ],
                           )
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: Size(150, 50),
-                                primary: primaryColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                            onPressed: () {
-                              setState(() {
-                                isLoading = true;
-                              });
+                        : statusPesanan == "selesai" ||
+                                statusPesanan == "ditolak" ||
+                                statusPesanan == "dibatalkan"
+                            ? Container(
+                                margin: EdgeInsets.symmetric(vertical: 10),
+                              )
+                            : ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    fixedSize: Size(150, 50),
+                                    primary: primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10))),
+                                onPressed: () {
+                                  setState(() {
+                                    isLoading = true;
+                                  });
 
-                              handleUpdateStatus(context);
-                            },
-                            child: Text(
-                              'Update Status',
-                              style: whiteTextStyle.copyWith(
-                                  fontSize: 20, fontWeight: semibold),
-                            ),
-                          ),
+                                  handleUpdateStatus(context);
+                                },
+                                child: Text(
+                                  'Update Status',
+                                  style: whiteTextStyle.copyWith(
+                                      fontSize: 20, fontWeight: semibold),
+                                ),
+                              ),
           ),
         ],
       ),

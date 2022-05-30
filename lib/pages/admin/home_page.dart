@@ -23,7 +23,7 @@ class HomePageAdmin extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(user.profilePhotoUrl),
+              backgroundImage: NetworkImage(user.url),
               radius: 30,
             ),
             const SizedBox(

@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(user.profilePhotoUrl),
+              backgroundImage: NetworkImage(user.url),
               radius: 30,
             ),
             const SizedBox(
@@ -210,8 +210,6 @@ class HomePage extends StatelessWidget {
               hero(),
               LayananTitle(),
               Layanan(),
-              PesananAktif(),
-              OrderTile(),
               TrickTitle(),
               TipsTrick()
             ]),
