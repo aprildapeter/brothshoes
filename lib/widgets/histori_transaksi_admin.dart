@@ -33,11 +33,11 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      transactionModel.time_pickup_delivery,
+                      transactionModel.timePickupDelivery,
                       style: inputTextStyle.copyWith(fontWeight: light),
                     ),
                     Text(
-                      transactionModel.categories_service,
+                      transactionModel.categoriesService,
                       style: button2TextStyle.copyWith(fontWeight: light),
                     ),
                   ],
@@ -82,7 +82,7 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                                     fontWeight: light),
                               ),
                               Text(
-                                transactionModel.iduser.name,
+                                transactionModel.user.name,
                                 style: secondaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
@@ -97,7 +97,7 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                                     fontWeight: light),
                               ),
                               Text(
-                                transactionModel.categories_service,
+                                transactionModel.items[0].product.category.name,
                                 style: secondaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
@@ -112,7 +112,7 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                                     fontWeight: light),
                               ),
                               Text(
-                                transactionModel.categories_service,
+                                transactionModel.items[0].product.name,
                                 style: secondaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
@@ -127,7 +127,7 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                                     fontWeight: light),
                               ),
                               Text(
-                                transactionModel.totalPrice,
+                                'Rp. ' + transactionModel.totalPrice,
                                 style: secondaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),

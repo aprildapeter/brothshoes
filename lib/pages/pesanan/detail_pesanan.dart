@@ -131,7 +131,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                       style: secondaryTextStyle.copyWith(fontWeight: light),
                     ),
                     Text(
-                      widget.transactionModel.iduser.name,
+                      widget.transactionModel.user.name,
                       style: secondaryTextStyle.copyWith(fontWeight: light),
                     ),
                   ],
@@ -144,7 +144,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                       style: secondaryTextStyle.copyWith(fontWeight: light),
                     ),
                     Text(
-                      widget.transactionModel.categories_service,
+                      widget.transactionModel.categoriesService,
                       style: secondaryTextStyle.copyWith(fontWeight: light),
                     ),
                   ],
@@ -157,7 +157,79 @@ class _DetailPesananState extends State<DetailPesanan> {
                       style: secondaryTextStyle.copyWith(fontWeight: light),
                     ),
                     Text(
-                      widget.transactionModel.categories_service,
+                      widget.transactionModel.categoriesService,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.totalPrice,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Status',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.status,
+                      style: warningTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Nama',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.user.name,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Kategori',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.categoriesService,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Treatment',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.categoriesService,
                       style: secondaryTextStyle.copyWith(fontWeight: light),
                     ),
                   ],
@@ -264,7 +336,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                                           borderRadius:
                                               BorderRadius.circular(10))),
                                   onPressed: () {
-                                     setState(() {
+                                    setState(() {
                                       isLoading = true;
                                     });
 

@@ -7,20 +7,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePageAdmin extends StatelessWidget {
-TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController nameController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     LogoutProvider logoutProvider = Provider.of<LogoutProvider>(context);
-    UpdateProfileProvider updateProfileProvider = Provider.of<UpdateProfileProvider>(context);
+    UpdateProfileProvider updateProfileProvider =
+        Provider.of<UpdateProfileProvider>(context);
     UserModel user = authProvider.user;
 
     handleLogout() async {
       if (await logoutProvider.logout(
         authProvider.user.token,
       )) {
-        Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/sign-in', (route) => false);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -33,7 +35,6 @@ TextEditingController nameController = TextEditingController(text: '');
         );
       }
     }
-    
 
     Widget header() {
       return Container(
