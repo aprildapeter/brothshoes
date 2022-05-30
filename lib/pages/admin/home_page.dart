@@ -318,8 +318,21 @@ class HomePageAdmin extends StatelessWidget {
           ),
           Row(
             children: [
-              const TipsCard(),
-              const TipsCard(),
+              TipsCard(
+                navigasi: '/tips-sepatu',
+                img: 'assets/images/sepatu.jpg',
+                title: 'Tips dan Trik Perawatan Sepatu',
+              ),
+              TipsCard(
+                navigasi: '/tips-tas',
+                img: 'assets/images/tas.jpg',
+                title: 'Tips dan Trik Perawatan Tas',
+              ),
+              TipsCard(
+                navigasi: '/tips-helm',
+                img: 'assets/images/helm.jpg',
+                title: 'Tips dan Trik Perawatan Helm',
+              ),
             ],
           )
         ]),

@@ -8,6 +8,9 @@ import 'package:brothshoes/pages/home/main_page.dart';
 import 'package:brothshoes/pages/sign_in.dart';
 import 'package:brothshoes/pages/sign_up.dart';
 import 'package:brothshoes/pages/splash_page.dart';
+import 'package:brothshoes/pages/tipstrik/tips_helm_page.dart';
+import 'package:brothshoes/pages/tipstrik/tips_sepatu_page.dart';
+import 'package:brothshoes/pages/tipstrik/tips_tas_page.dart';
 import 'package:brothshoes/pages/transaksi_page.dart';
 import 'package:brothshoes/pages/treatment_page.dart';
 import 'package:brothshoes/providers/auth_provider.dart';
@@ -73,6 +76,9 @@ class MyApp extends StatelessWidget {
           '/transaksi': (context) => Transaksi(),
           '/cart': (context) => CartPage(),
           '/checkout': (context) => CheckoutPage(),
+          '/tips-sepatu': (context) => TipsSepatuPage(),
+          '/tips-tas': (context) => TipsTasPage(),
+          '/tips-helm': (context) => TipsHelmPage(),
         },
       ),
     );
