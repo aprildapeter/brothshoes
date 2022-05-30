@@ -51,6 +51,12 @@ class _DetailPesananState extends State<DetailPesanan> {
             widget.transactionModel.id.toString(), "selesai");
 
         break;
+        break;
+      case "dikirimbesok":
+        transactionProvider.updateStatusPesanan(prefs.getString("token"),
+            widget.transactionModel.id.toString(), "diambilbesok");
+
+        break;
       case "selesai":
         break;
       case "dibatalkan":
@@ -186,6 +192,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(150, 50),
                                   primary: primaryColor,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10))),
@@ -207,6 +214,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(150, 50),
                                   primary: Colors.red,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10))),
@@ -220,26 +228,76 @@ class _DetailPesananState extends State<DetailPesanan> {
                           ),
                         ],
                       )
-                    : Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: primaryColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          onPressed: () {
-                            setState(() {
-                              isLoading = true;
-                            });
+                    : statusPesanan == "diambil"
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: Size(150, 50),
+                                      primary: primaryColor,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  onPressed: () {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
 
-                            handleUpdateStatus(context);
-                          },
-                          child: Text(
-                            'Update Status',
-                            style: whiteTextStyle.copyWith(
-                                fontSize: 20, fontWeight: semibold),
+                                    handleUpdateStatus(context);
+                                  },
+                                  child: Text(
+                                    'Sudah diambil',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 16, fontWeight: semibold),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: Size(150, 50),
+                                      primary: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  onPressed: () {
+                                     setState(() {
+                                      isLoading = true;
+                                    });
+
+                                    handleUpdateStatus(context);
+                                  },
+                                  child: Text(
+                                    'Diambil besok',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 16, fontWeight: semibold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                fixedSize: Size(150, 50),
+                                primary: primaryColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            onPressed: () {
+                              setState(() {
+                                isLoading = true;
+                              });
+
+                              handleUpdateStatus(context);
+                            },
+                            child: Text(
+                              'Update Status',
+                              style: whiteTextStyle.copyWith(
+                                  fontSize: 20, fontWeight: semibold),
+                            ),
                           ),
-                        ),
-                      ),
           ),
         ],
       ),

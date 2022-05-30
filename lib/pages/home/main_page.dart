@@ -56,10 +56,10 @@ class _MainPageState extends State<MainPage> {
                 icon: Icon(Icons.list),
                 label: 'Pesanan',
               ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_basket),
-                label: 'Keranjang',
-              ),
+              // const BottomNavigationBarItem(
+              //   icon: Icon(Icons.shopping_basket),
+              //   label: 'Keranjang',
+              // ),
               const BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'Profil',
@@ -78,10 +78,10 @@ class _MainPageState extends State<MainPage> {
         case 1:
           return TransaksiHistoriPage();
           break;
+        // case 1:
+        //   return const CartPage();
+        //   break;
         case 2:
-          return const CartPage();
-          break;
-        case 3:
           return ProfilePage();
           break;
         default:

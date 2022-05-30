@@ -116,7 +116,7 @@ class HomePageAdmin extends StatelessWidget {
       return Container(
         margin: const EdgeInsets.only(top: 30, bottom: 10, left: 30),
         child: Text(
-          'Layanan',
+          'Dashboard',
           style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
         ),
       );
@@ -130,13 +130,148 @@ class HomePageAdmin extends StatelessWidget {
             const SizedBox(
               width: 30,
             ),
-            Row(
-              children: productProvider.products
-                  .map(
-                    (product) => LayananCard(product),
-                  )
-                  .toList(),
-            ),
+            Row(children: [
+              Container(
+                width: 170,
+                height: 150,
+                margin: EdgeInsets.only(right: 10),
+                child: Card(
+                  color: secondaryColor,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text('20',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 30,
+                            )),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text('Total Kategori',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: light,
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 170,
+                height: 150,
+                margin: EdgeInsets.only(right: 10),
+                child: Card(
+                  color: primaryColor,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text('20',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 30,
+                            )),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text('Total Treatment',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: light,
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 170,
+                height: 150,
+                margin: EdgeInsets.only(right: 10),
+                child: Card(
+                  color: warningText,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text('20',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 30,
+                            )),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text('Total User',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: light,
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 170,
+                height: 150,
+                margin: EdgeInsets.only(right: 10),
+                child: Card(
+                  color: dangerText,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text('20',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 30,
+                            )),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text('Total Transaksi',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: light,
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ]),
           ],
         ),
       );
@@ -205,8 +340,6 @@ class HomePageAdmin extends StatelessWidget {
               //hero(),
               LayananTitle(),
               Layanan(),
-              PesananAktif(),
-              OrderTile(),
               TrickTitle(),
               TipsTrick()
             ]),

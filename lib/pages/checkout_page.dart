@@ -222,7 +222,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(2000),
-                                lastDate: DateTime(2030));
+                                lastDate: DateTime(2030),
+                                selectableDayPredicate: (day) {
+                                  if ((day.isAfter(DateTime.now()
+                                          .subtract(Duration(days: 1)))) &&
+                                      (day.isBefore(DateTime.now()
+                                          .add(Duration(days: 7))))) {
+                                    return true;
+                                  }
+                                  return false;
+                                });
                             if (newDate == null) return;
                             setState(() {
                               selectDate = newDate;

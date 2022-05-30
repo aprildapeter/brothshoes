@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
 
     Widget header() {
       return Container(
-        margin: const EdgeInsets.only(left: 30),
+        margin: const EdgeInsets.only(left: 30, right: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,6 +45,16 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ]),
+            Spacer(),
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cart');
+                },
+                icon: Icon(
+                  Icons.shopping_basket,
+                  size: 40,
+                  color: primaryColor,
+                ))
           ],
         ),
       );
