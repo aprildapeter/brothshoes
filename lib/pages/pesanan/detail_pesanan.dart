@@ -1,4 +1,5 @@
 import 'package:brothshoes/models/transaction_model.dart';
+import 'package:brothshoes/widgets/detail_pesanan_product_widget.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -291,22 +292,21 @@ class _DetailPesananState extends State<DetailPesanan> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'List Barang',
-                style: primaryTextStyle.copyWith(
-                    fontSize: 20, fontWeight: semibold),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Text(widget.transactionModel.items[0].id.toString())
-            ],
+          Text(
+            'List Barang',
+            style:
+                primaryTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
           ),
+          Column(
+            children: widget.transactionModel.items
+                .map(
+                  (e) => DetailPesananProductItemCard(e.product),
+                )
+                .toList(),
+          ),
+          const Divider(),
           informasiPengguna(),
           InformasiPickup(),
           InformasiPembayaran(),
@@ -530,78 +530,7 @@ class _DetailPesananState extends State<DetailPesanan> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Status',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.status,
-                      style: warningTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Nama',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.user.name,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Kategori',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Treatment',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.totalPrice,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+
           Padding(
             padding: const EdgeInsets.all(10),
             child: isLoading
