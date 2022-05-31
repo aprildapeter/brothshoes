@@ -133,7 +133,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         _currentAddress,
         selectDate.toString(),
         _detailLokasiController.text,
-        cartProvider.totalPrice(),
+        cartProvider.totalPrice() + _ongkir,
         _ongkir,
       )) {
         cartProvider.carts = [];

@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../providers/transaction_provider.dart';
 import '../../theme.dart';
+import '../../widgets/checkout_item_card.dart';
 
 class DetailPesanan extends StatefulWidget {
   TransactionModel transactionModel;
@@ -458,6 +459,150 @@ class _DetailPesananState extends State<DetailPesanan> {
           //   ),
           // ),
           Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Status',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.status,
+                      style: warningTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Nama',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.user.name,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Kategori',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.categoriesService,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Treatment',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.categoriesService,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.totalPrice,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Status',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.status,
+                      style: warningTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Nama',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.user.name,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Kategori',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.categoriesService,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Treatment',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.categoriesService,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total',
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                    Text(
+                      widget.transactionModel.totalPrice,
+                      style: secondaryTextStyle.copyWith(fontWeight: light),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.all(10),
             child: isLoading
                 ? const Center(
@@ -471,7 +616,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(150, 50),
+                                  fixedSize: const Size(150, 50),
                                   primary: primaryColor,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10))),
@@ -493,11 +638,36 @@ class _DetailPesananState extends State<DetailPesanan> {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(150, 50),
+                                  fixedSize: const Size(150, 50),
                                   primary: Colors.red,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10))),
-                              onPressed: () {},
+                              onPressed: () async {
+                                setState(() {
+                                  isLoading = true;
+                                });
+
+                                var prefs =
+                                    await SharedPreferences.getInstance();
+                                transactionProvider.updateStatusPesanan(
+                                    prefs.getString("token"),
+                                    widget.transactionModel.id.toString(),
+                                    "ditolak");
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.amber,
+                                    content: Text(
+                                      'Status pesanan berhasil diupdate.',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+
+                                setState(() {
+                                  isLoading = false;
+                                });
+                              },
                               child: Text(
                                 'Tolak',
                                 style: whiteTextStyle.copyWith(
@@ -514,7 +684,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                               Expanded(
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      fixedSize: Size(150, 50),
+                                      fixedSize: const Size(150, 50),
                                       primary: primaryColor,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -537,7 +707,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                               Expanded(
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      fixedSize: Size(150, 50),
+                                      fixedSize: const Size(150, 50),
                                       primary: Colors.red,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -558,32 +728,25 @@ class _DetailPesananState extends State<DetailPesanan> {
                               ),
                             ],
                           )
-                        : statusPesanan == "selesai" ||
-                                statusPesanan == "ditolak" ||
-                                statusPesanan == "dibatalkan"
-                            ? Container(
-                                margin: EdgeInsets.symmetric(vertical: 10),
-                              )
-                            : ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    fixedSize: Size(150, 50),
-                                    primary: primaryColor,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10))),
-                                onPressed: () {
-                                  setState(() {
-                                    isLoading = true;
-                                  });
+                        : ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                fixedSize: Size(150, 50),
+                                primary: primaryColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            onPressed: () {
+                              setState(() {
+                                isLoading = true;
+                              });
 
-                                  handleUpdateStatus(context);
-                                },
-                                child: Text(
-                                  'Update Status',
-                                  style: whiteTextStyle.copyWith(
-                                      fontSize: 20, fontWeight: semibold),
-                                ),
-                              ),
+                              handleUpdateStatus(context);
+                            },
+                            child: Text(
+                              'Update Status',
+                              style: whiteTextStyle.copyWith(
+                                  fontSize: 20, fontWeight: semibold),
+                            ),
+                          ),
           ),
         ],
       ),
