@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:brothshoes/theme.dart';
 
 class pendingPage extends StatelessWidget {
-  const pendingPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

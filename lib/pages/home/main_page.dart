@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
           return HomePage();
           break;
         case 1:
-          return TransaksiHistoriPage();
+          return PesananPage();
           break;
         case 2:
           return const CartPage();

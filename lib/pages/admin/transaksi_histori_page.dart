@@ -1,5 +1,5 @@
 import 'package:brothshoes/providers/transaction_provider.dart';
-import 'package:brothshoes/widgets/histori_transaksi.dart';
+import 'package:brothshoes/widgets/histori_transaksi_pelanggan.dart';
 import 'package:brothshoes/widgets/histori_transaksi_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:brothshoes/theme.dart';
@@ -56,7 +56,7 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: header(),
+      // appBar: header(),
       body: RefreshIndicator(
         onRefresh: () async {
           await Provider.of<TransactionProvider>(context, listen: false)
@@ -64,7 +64,7 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
         },
         child: ListView(
           children: [
-            Histori(),
+            // Histori(),
             content(),
           ],
         ),

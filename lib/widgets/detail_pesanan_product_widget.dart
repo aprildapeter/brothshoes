@@ -21,7 +21,7 @@ class DetailPesananProductItemCard extends StatelessWidget {
                 height: 60,
                 child: ClipOval(
                     child: Image.network(
-                  product.url,
+                  product.category.imgUrl,
                   fit: BoxFit.fill,
                 )),
               ),

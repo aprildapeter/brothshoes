@@ -1,11 +1,10 @@
 import 'package:brothshoes/pages/admin/transaksi_histori_page.dart';
-import 'package:brothshoes/pages/home/transaksi_histori_page.dart';
 import 'package:brothshoes/pages/pesanan/pending_page.dart';
 import 'package:brothshoes/theme.dart';
 import 'package:flutter/material.dart';
 
-class PesananPage extends StatelessWidget {
-  const PesananPage({Key key}) : super(key: key);
+class PesananPageAdmin extends StatelessWidget {
+  // const PesananPageAdmin({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,16 +58,17 @@ class PesananPage extends StatelessWidget {
               ],
             ),
           ),
-          body: TabBarView(
+          body:  TabBarView(
             children: <Widget>[
-              TransaksiHistoriPage(),
-              TransaksiHistoriPage(),
-              TransaksiHistoriPage(),
-              TransaksiHistoriPage(),
-              TransaksiHistoriPage(),
-              TransaksiHistoriPage(),
-              TransaksiHistoriPage(),
-              TransaksiHistoriPage(),
+              TransaksiHistoriPageAdmin(),
+              TransaksiHistoriPageAdmin(),
+              TransaksiHistoriPageAdmin(),
+              TransaksiHistoriPageAdmin(),
+              TransaksiHistoriPageAdmin(),
+              TransaksiHistoriPageAdmin(),
+              TransaksiHistoriPageAdmin(),
+              TransaksiHistoriPageAdmin(),
+              
             ],
           ),
         ),

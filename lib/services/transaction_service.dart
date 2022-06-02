@@ -35,7 +35,7 @@ class TransactionService {
               },
             )
             .toList(),
-        'status': "pending",
+        'status': "menunggu",
         'total_price': totalPrice,
         'shipping_price': ongkir,
       },

@@ -1,5 +1,6 @@
 import 'package:brothshoes/pages/admin/chat_page.dart';
 import 'package:brothshoes/pages/admin/home_page.dart';
+import 'package:brothshoes/pages/admin/pesanan_page.dart';
 import 'package:brothshoes/pages/admin/profile_page.dart';
 import 'package:brothshoes/pages/admin/transaksi_histori_page.dart';
 import 'package:brothshoes/pages/cart_page.dart';
@@ -80,7 +81,7 @@ class _MainPageAdminState extends State<MainPageAdmin> {
           return HomePageAdmin();
           break;
         case 1:
-          return TransaksiHistoriPageAdmin();
+          return PesananPageAdmin();
           break;
         case 2:
           return ProfilePageAdmin();

@@ -3,9 +3,9 @@ import 'package:brothshoes/pages/pesanan/detail_pesanan.dart';
 import 'package:flutter/material.dart';
 import 'package:brothshoes/theme.dart';
 
-class HistoriTransaksiAdminCard extends StatelessWidget {
+class HistoriTransaksiPelangganCard extends StatelessWidget {
   TransactionModel transactionModel;
-  HistoriTransaksiAdminCard(this.transactionModel);
+  HistoriTransaksiPelangganCard(this.transactionModel);
 
   @override
   Widget build(BuildContext context) {

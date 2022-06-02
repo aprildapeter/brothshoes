@@ -52,7 +52,7 @@ class CategoryModel {
   CategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    imgUrl = json['img_url'];
+    imgUrl = json['url'];
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
   }
@@ -61,7 +61,7 @@ class CategoryModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['img_url'] = imgUrl;
+    data['url'] = imgUrl;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;

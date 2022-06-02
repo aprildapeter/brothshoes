@@ -78,7 +78,7 @@ class EditprofilePage extends StatelessWidget {
                 children: [
                   Stack(children: [
                     CircleAvatar(
-                      backgroundImage: NetworkImage(user.profilePhotoUrl),
+                      backgroundImage: NetworkImage(user.url),
                       radius: 70,
                     ),
                     Positioned(

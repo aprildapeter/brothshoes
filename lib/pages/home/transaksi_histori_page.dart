@@ -1,5 +1,5 @@
 import 'package:brothshoes/providers/transaction_provider.dart';
-import 'package:brothshoes/widgets/histori_transaksi.dart';
+import 'package:brothshoes/widgets/histori_transaksi_pelanggan.dart';
 import 'package:brothshoes/widgets/histori_transaksi_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:brothshoes/theme.dart';
@@ -56,10 +56,10 @@ class TransaksiHistoriPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: header(),
+      // appBar: header(),
       body: ListView(
         children: [
-          Histori(),
+          // Histori(),
           content(),
         ],
       ),

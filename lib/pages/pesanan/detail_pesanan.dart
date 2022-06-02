@@ -54,9 +54,9 @@ class _DetailPesananState extends State<DetailPesanan> {
             widget.transactionModel.id.toString(), "selesai");
 
         break;
-      case "diambilbesok":
+      case "diambil besok":
         transactionProvider.updateStatusPesanan(prefs.getString("token"),
-            widget.transactionModel.id.toString(), "diambilbesok");
+            widget.transactionModel.id.toString(), "diproses");
 
         break;
       case "selesai":
@@ -458,78 +458,6 @@ class _DetailPesananState extends State<DetailPesanan> {
           //     ],
           //   ),
           // ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Status',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.status,
-                      style: warningTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Nama',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.user.name,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Kategori',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Treatment',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.categoriesService,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                    Text(
-                      widget.transactionModel.totalPrice,
-                      style: secondaryTextStyle.copyWith(fontWeight: light),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
 
           Padding(
             padding: const EdgeInsets.all(10),
@@ -657,6 +585,82 @@ class _DetailPesananState extends State<DetailPesanan> {
                               ),
                             ],
                           )
+                          : statusPesanan == "diambil"
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(150, 50),
+                                      primary: primaryColor,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  onPressed: () {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+
+                                    handleUpdateStatus(context);
+                                  },
+                                  child: Text(
+                                    'Sudah diambil',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 16, fontWeight: semibold),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(150, 50),
+                                      primary: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  onPressed: () async {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+
+                                    var prefs =
+                                        await SharedPreferences.getInstance();
+                                    transactionProvider.updateStatusPesanan(
+                                        prefs.getString("token"),
+                                        widget.transactionModel.id.toString(),
+                                        "diambil besok");
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.amber,
+                                        content: Text(
+                                          'Status pesanan berhasil diupdate.',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    );
+
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                  },
+                                  child: Text(
+                                    'Diambil besok',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 16, fontWeight: semibold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : statusPesanan == "selesai" ||
+                                statusPesanan == "ditolak" ||
+                                statusPesanan == "dibatalkan"
+                            ? Container(
+                                margin: EdgeInsets.symmetric(vertical: 10),
+                              )
                         : ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 fixedSize: Size(150, 50),

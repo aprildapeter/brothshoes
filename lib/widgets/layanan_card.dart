@@ -27,7 +27,7 @@ class LayananCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                product.url,
+                product.category.imgUrl,
                 width: MediaQuery.of(context).size.width,
                 height: 150,
                 fit: BoxFit.cover,
