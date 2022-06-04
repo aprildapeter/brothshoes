@@ -37,12 +37,29 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
     }
 
     Widget content() {
-      return Column(
-        children: transactionProvider.transactions
-            .where((TransactionModel element) => element.status == coba)
-            .map((transaction) => HistoriTransaksiAdminCard(transaction))
-            .toList(),
-      );
+      return transactionProvider.transactions
+              .where((e) => e.status == coba)
+              .isEmpty
+          ? Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+                const Text(
+                  "Data transaksi masih kosong.",
+                  style: TextStyle(
+                      color: Color(0xff7BC4A0),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            )
+          : Column(
+              children: transactionProvider.transactions
+                  .where((TransactionModel element) => element.status == coba)
+                  .map((transaction) => HistoriTransaksiAdminCard(transaction))
+                  .toList(),
+            );
     }
 
     Widget header() {

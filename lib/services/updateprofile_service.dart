@@ -31,9 +31,10 @@ class UpdateProfileService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body)['data'];
-      UserModel user = UserModel.fromJson(data['user.id']);
-      user.token = 'Bearer ' + data['access_token'];
+      var data = json.decode(response.body);
+
+      UserModel user = UserModel.fromJson(data['data']);
+      user.token = data['access_token'];
 
       return user;
     } else {
@@ -41,4 +42,3 @@ class UpdateProfileService {
     }
   }
 }
-

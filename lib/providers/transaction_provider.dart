@@ -14,10 +14,10 @@ class TransactionProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getTransaksi({UserModel token}) async {
+  Future<void> getTransaksi(UserModel userModel) async {
     try {
       List<TransactionModel> transactions =
-          await TransactionService().getTransaksi(token);
+          await TransactionService().getTransaksi(userModel.token);
 
       _transactions = transactions;
       //return true;

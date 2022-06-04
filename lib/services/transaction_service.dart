@@ -84,7 +84,7 @@ class TransactionService {
     }
   }
 
-  Future<List<TransactionModel>> getTransaksi(UserModel token) async {
+  Future<List<TransactionModel>> getTransaksi(String token) async {
     var url = '$baseUrl/transactions';
     var headers = {
       'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ class TransactionService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data']['data']['items'];
+      List data = jsonDecode(response.body)['data']['data'];
       List<TransactionModel> transaksi = [];
 
       for (var item in data) {

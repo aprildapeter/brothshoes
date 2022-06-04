@@ -4,7 +4,7 @@ import 'package:brothshoes/services/updateprofile_service.dart';
 import 'package:flutter/cupertino.dart';
 
 class UpdateProfileProvider with ChangeNotifier {
-   UserModel _user;
+  UserModel _user;
 
   UserModel get user => _user;
 
@@ -12,8 +12,9 @@ class UpdateProfileProvider with ChangeNotifier {
     _user = user;
     notifyListeners();
   }
+
   Future<bool> update({
-     String name,
+    String name,
     String phone,
     String address,
     String token,
@@ -21,7 +22,7 @@ class UpdateProfileProvider with ChangeNotifier {
     try {
       UserModel user = await UpdateProfileService().update(
         token: token,
-         name: name,
+        name: name,
         phone: phone,
         address: address,
       );

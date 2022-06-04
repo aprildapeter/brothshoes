@@ -37,7 +37,7 @@ class _SigninPageState extends State<SigninPage> {
       )) {
         if (authProvider.user.roles == 'pelanggan') {
           await Provider.of<TransactionProvider>(context, listen: false)
-              .getTransaksi();
+              .getTransaksi(authProvider.user);
 
           Navigator.pushNamed(context, '/home');
         } else {

@@ -20,27 +20,6 @@ class EditprofilePage extends StatelessWidget {
     TextEditingController addressController =
         TextEditingController(text: user.address);
 
-    handleUpdate() async {
-      if (await updateProfileProvider.update(
-        name: nameController.text,
-        phone: phoneController.text,
-        address: addressController.text,
-        token: authProvider.user.token,
-      )) {
-        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.amber,
-            content: Text(
-              authProvider.user.name,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        );
-      }
-    }
-
     Widget header() {
       return Container(
         height: 250,
@@ -241,7 +220,32 @@ class EditprofilePage extends StatelessWidget {
                     ],
                   ),
                   child: TextButton(
-                    onPressed: handleUpdate,
+                    onPressed: () async {
+                      if (await updateProfileProvider.update(
+                        name: nameController.text,
+                        phone: phoneController.text,
+                        address: addressController.text,
+                        token: authProvider.user.token,
+                      )) {
+                        if (user.roles == "admin") {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/admin', (route) => false);
+                        } else {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/home', (route) => false);
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.amber,
+                            content: Text(
+                              authProvider.user.name,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                    },
                     child: Text(
                       'Simpan Perubahan',
                       style: whiteTextStyle.copyWith(
@@ -268,7 +272,7 @@ class EditprofilePage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
             header(),
             body(),
