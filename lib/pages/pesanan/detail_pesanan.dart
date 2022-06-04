@@ -554,58 +554,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                                     handleUpdateStatus(context);
                                   },
                                   child: Text(
-                                    'Sudah diambil',
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 16, fontWeight: semibold),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      fixedSize: const Size(150, 50),
-                                      primary: Colors.red,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10))),
-                                  onPressed: () {
-                                    setState(() {
-                                      isLoading = true;
-                                    });
-
-                                    handleUpdateStatus(context);
-                                  },
-                                  child: Text(
-                                    'Diambil besok',
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 16, fontWeight: semibold),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                          : statusPesanan == "diambil"
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      fixedSize: const Size(150, 50),
-                                      primary: primaryColor,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10))),
-                                  onPressed: () {
-                                    setState(() {
-                                      isLoading = true;
-                                    });
-
-                                    handleUpdateStatus(context);
-                                  },
-                                  child: Text(
-                                    'Sudah diambil',
+                                    'Sudah Diambil',
                                     style: whiteTextStyle.copyWith(
                                         fontSize: 16, fontWeight: semibold),
                                   ),
@@ -647,7 +596,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                                     });
                                   },
                                   child: Text(
-                                    'Diambil besok',
+                                    'Diambil Besok',
                                     style: whiteTextStyle.copyWith(
                                         fontSize: 16, fontWeight: semibold),
                                   ),
@@ -655,31 +604,105 @@ class _DetailPesananState extends State<DetailPesanan> {
                               ),
                             ],
                           )
-                        : statusPesanan == "selesai" ||
-                                statusPesanan == "ditolak" ||
-                                statusPesanan == "dibatalkan"
-                            ? Container(
-                                margin: EdgeInsets.symmetric(vertical: 10),
-                              )
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: Size(150, 50),
-                                primary: primaryColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                            onPressed: () {
-                              setState(() {
-                                isLoading = true;
-                              });
+                        : statusPesanan == "diambil besok"
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: const Size(150, 50),
+                                          primary: primaryColor,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10))),
+                                      onPressed: () {
+                                        setState(() {
+                                          isLoading = true;
+                                        });
 
-                              handleUpdateStatus(context);
-                            },
-                            child: Text(
-                              'Update Status',
-                              style: whiteTextStyle.copyWith(
-                                  fontSize: 20, fontWeight: semibold),
-                            ),
-                          ),
+                                        handleUpdateStatus(context);
+                                      },
+                                      child: Text(
+                                        'Sudah Diambil',
+                                        style: whiteTextStyle.copyWith(
+                                            fontSize: 16, fontWeight: semibold),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: const Size(150, 50),
+                                          primary: Colors.red,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10))),
+                                      onPressed: () async {
+                                        setState(() {
+                                          isLoading = true;
+                                        });
+
+                                        var prefs = await SharedPreferences
+                                            .getInstance();
+                                        transactionProvider.updateStatusPesanan(
+                                            prefs.getString("token"),
+                                            widget.transactionModel.id
+                                                .toString(),
+                                            "ditolak");
+
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            backgroundColor: Colors.amber,
+                                            content: Text(
+                                              'Status pesanan berhasil diupdate.',
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        );
+
+                                        setState(() {
+                                          isLoading = false;
+                                        });
+                                      },
+                                      child: Text(
+                                        'Ditolak',
+                                        style: whiteTextStyle.copyWith(
+                                            fontSize: 16, fontWeight: semibold),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : statusPesanan == "selesai" ||
+                                    statusPesanan == "ditolak" ||
+                                    statusPesanan == "dibatalkan"
+                                ? Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                  )
+                                : ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        fixedSize: Size(150, 50),
+                                        primary: primaryColor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10))),
+                                    onPressed: () {
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+
+                                      handleUpdateStatus(context);
+                                    },
+                                    child: Text(
+                                      'Update Status',
+                                      style: whiteTextStyle.copyWith(
+                                          fontSize: 20, fontWeight: semibold),
+                                    ),
+                                  ),
           ),
         ],
       ),

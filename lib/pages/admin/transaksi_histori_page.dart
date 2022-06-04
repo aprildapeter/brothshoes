@@ -1,3 +1,4 @@
+import 'package:brothshoes/models/transaction_model.dart';
 import 'package:brothshoes/providers/transaction_provider.dart';
 import 'package:brothshoes/widgets/histori_transaksi_pelanggan.dart';
 import 'package:brothshoes/widgets/histori_transaksi_admin.dart';
@@ -6,6 +7,8 @@ import 'package:brothshoes/theme.dart';
 import 'package:provider/provider.dart';
 
 class TransaksiHistoriPageAdmin extends StatelessWidget {
+  final coba;
+  TransaksiHistoriPageAdmin({this.coba});
   @override
   Widget build(BuildContext context) {
     TransactionProvider transactionProvider =
@@ -36,6 +39,7 @@ class TransaksiHistoriPageAdmin extends StatelessWidget {
     Widget content() {
       return Column(
         children: transactionProvider.transactions
+            .where((TransactionModel element) => element.status == coba)
             .map((transaction) => HistoriTransaksiAdminCard(transaction))
             .toList(),
       );

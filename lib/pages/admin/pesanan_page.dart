@@ -58,17 +58,16 @@ class PesananPageAdmin extends StatelessWidget {
               ],
             ),
           ),
-          body:  TabBarView(
+          body: TabBarView(
             children: <Widget>[
-              TransaksiHistoriPageAdmin(),
-              TransaksiHistoriPageAdmin(),
-              TransaksiHistoriPageAdmin(),
-              TransaksiHistoriPageAdmin(),
-              TransaksiHistoriPageAdmin(),
-              TransaksiHistoriPageAdmin(),
-              TransaksiHistoriPageAdmin(),
-              TransaksiHistoriPageAdmin(),
-              
+              TransaksiHistoriPageAdmin(coba: 'menunggu'),
+              TransaksiHistoriPageAdmin(coba: 'diambil'),
+              TransaksiHistoriPageAdmin(coba: 'diambil besok'),
+              TransaksiHistoriPageAdmin(coba: 'diproses'),
+              TransaksiHistoriPageAdmin(coba: 'dikirim'),
+              TransaksiHistoriPageAdmin(coba: 'selesai'),
+              TransaksiHistoriPageAdmin(coba: 'ditolak'),
+              TransaksiHistoriPageAdmin(coba: 'dibatalkan'),
             ],
           ),
         ),
