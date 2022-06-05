@@ -56,8 +56,8 @@ class HistoriTransaksiPelangganCard extends StatelessWidget {
                       //   width: MediaQuery.of(context).size.width * 0.3,
                       //   fit: BoxFit.cover,
                       // ),
-                      child: Image.asset(
-                        'assets/images/broth_logo.png',
+                      child: Image.network(
+                        transactionModel.user.url,
                         width: MediaQuery.of(context).size.width * 0.3,
                         fit: BoxFit.cover,
                       ),

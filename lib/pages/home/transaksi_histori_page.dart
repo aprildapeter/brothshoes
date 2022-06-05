@@ -1,3 +1,5 @@
+import 'package:brothshoes/models/transaction_model.dart';
+import 'package:brothshoes/providers/auth_provider.dart';
 import 'package:brothshoes/providers/transaction_provider.dart';
 import 'package:brothshoes/widgets/histori_transaksi_pelanggan.dart';
 import 'package:brothshoes/widgets/histori_transaksi_admin.dart';
@@ -6,22 +8,25 @@ import 'package:brothshoes/theme.dart';
 import 'package:provider/provider.dart';
 
 class TransaksiHistoriPage extends StatelessWidget {
+  final coba;
+  TransaksiHistoriPage({this.coba});
   @override
   Widget build(BuildContext context) {
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     Widget Histori() {
       return Container(
-        margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+        margin: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              'histori',
+              'riwayat',
               style: secondaryTextStyle,
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Icon(
@@ -34,34 +39,59 @@ class TransaksiHistoriPage extends StatelessWidget {
     }
 
     Widget content() {
-      return SingleChildScrollView(
-        child: Column(
-          children: transactionProvider.transactions
-              .map((transaction) => HistoriTransaksiAdminCard(transaction))
-              .toList(),
-        ),
-      );
+      return transactionProvider.transactions
+              .where((e) => e.status == coba)
+              .isEmpty
+          ? Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+                const Text(
+                  "Data transaksi masih kosong.",
+                  style: TextStyle(
+                      color: Color(0xff7BC4A0),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            )
+          : Column(
+              children: transactionProvider.transactions
+                  .where((TransactionModel element) => element.status == coba)
+                  .map((transaction) =>
+                      HistoriTransaksiPelangganCard(transaction))
+                  .toList(),
+            );
     }
 
     Widget header() {
       return AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: primaryColor,
+        automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Pesananmu',
-          style: primaryTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
+          'Pesanan',
+          style: primaryTextStyle.copyWith(
+              fontSize: 20, fontWeight: semibold, color: Colors.white),
         ),
       );
     }
 
     return Scaffold(
       // appBar: header(),
-      body: ListView(
-        children: [
-          // Histori(),
-          content(),
-        ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Provider.of<TransactionProvider>(context, listen: false)
+              .getTransaksi(authProvider.user);
+        },
+        child: ListView(
+          children: [
+            // Histori(),
+            content(),
+          ],
+        ),
       ),
     );
   }

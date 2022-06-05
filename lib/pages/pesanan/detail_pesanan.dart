@@ -459,7 +459,8 @@ class _DetailPesananState extends State<DetailPesanan> {
           //   ),
           // ),
 
-          widget.transactionModel.user.roles == "admin"
+          widget.transactionModel.user.roles == "admin" ||
+                  widget.transactionModel.user.roles == "karyawan"
               ? Padding(
                   padding: const EdgeInsets.all(10),
                   child: isLoading
@@ -723,7 +724,57 @@ class _DetailPesananState extends State<DetailPesanan> {
                                           ),
                                         ),
                 )
-              : Container(),
+              : widget.transactionModel.user.roles == "pelanggan"
+                  ? Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                              color: Colors.green,
+                            ))
+                          : statusPesanan == "menunggu"
+                              ? ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(150, 50),
+                                      primary: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  onPressed: () async {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+
+                                    var prefs =
+                                        await SharedPreferences.getInstance();
+                                    transactionProvider.updateStatusPesanan(
+                                        prefs.getString("token"),
+                                        widget.transactionModel.id.toString(),
+                                        "dibatalkan");
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Color(0xff7BC4A0),
+                                        content: Text(
+                                          'Pesanan Telah dbatalkan',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    );
+
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                  },
+                                  child: Text(
+                                    'Dibatalkan',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 20, fontWeight: semibold),
+                                  ),
+                                )
+                              : Container(),
+                    )
+                  : Container(),
         ],
       ),
     );

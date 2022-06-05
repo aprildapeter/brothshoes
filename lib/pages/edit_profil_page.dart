@@ -239,7 +239,7 @@ class EditprofilePage extends StatelessWidget {
                           SnackBar(
                             backgroundColor: Colors.amber,
                             content: Text(
-                              authProvider.user.name,
+                              "Gagal Update Profile !!!",
                               textAlign: TextAlign.center,
                             ),
                           ),
