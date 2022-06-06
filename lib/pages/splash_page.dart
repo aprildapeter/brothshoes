@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:brothshoes/providers/auth_provider.dart';
 import 'package:brothshoes/providers/product_provider.dart';
 import 'package:brothshoes/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,12 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   getInit() async {
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
+
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    await Provider.of<AuthProvider>(context, listen: false)
+        .getUser(authProvider.user);
 
     Navigator.pushNamed(context, '/sign-in');
   }

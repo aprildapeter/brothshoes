@@ -90,180 +90,178 @@ class EditprofilePage extends StatelessWidget {
     }
 
     Widget body() {
-      return Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-            color: whiteColor,
-            // borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: shadow2,
-                  spreadRadius: 1,
-                  blurRadius: 4,
-                  offset: Offset(0, 4))
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
+      return Container(
+        decoration: BoxDecoration(
+          color: whiteColor,
+          // borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                color: shadow2,
+                spreadRadius: 1,
+                blurRadius: 4,
+                offset: Offset(0, 4))
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Email",
+                    style: primaryTextStyle.copyWith(
+                        fontSize: 18, fontWeight: semibold),
+                  ),
+                  Container(
+                    height: 50,
+                    child: TextFormField(
+                      textAlignVertical: TextAlignVertical.bottom,
+                      enabled: false,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        fillColor: Colors.grey[300],
+                        filled: true,
+                        hintText: user.email,
+                        hintStyle: whiteTextStyle.copyWith(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Email",
+                      "Nama",
                       style: primaryTextStyle.copyWith(
                           fontSize: 18, fontWeight: semibold),
                     ),
-                    Container(
-                      height: 50,
-                      child: TextFormField(
-                        textAlignVertical: TextAlignVertical.bottom,
-                        enabled: false,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          fillColor: Colors.grey[300],
-                          filled: true,
-                          hintText: user.email,
-                          hintStyle: whiteTextStyle.copyWith(
-                            fontSize: 18,
-                          ),
+                    TextFormField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        hintStyle: inputTextStyle.copyWith(
+                          fontSize: 18,
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Nama",
-                        style: primaryTextStyle.copyWith(
-                            fontSize: 18, fontWeight: semibold),
-                      ),
-                      TextFormField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          hintStyle: inputTextStyle.copyWith(
-                            fontSize: 18,
-                          ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "No.telp",
+                      style: primaryTextStyle.copyWith(
+                          fontSize: 18, fontWeight: semibold),
+                    ),
+                    TextFormField(
+                      controller: phoneController,
+                      decoration: InputDecoration(
+                        hintStyle: inputTextStyle.copyWith(
+                          fontSize: 18,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "No.telp",
-                        style: primaryTextStyle.copyWith(
-                            fontSize: 18, fontWeight: semibold),
-                      ),
-                      TextFormField(
-                        controller: phoneController,
-                        decoration: InputDecoration(
-                          hintStyle: inputTextStyle.copyWith(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Alamat Lengkap",
-                        style: primaryTextStyle.copyWith(
-                            fontSize: 18, fontWeight: semibold),
-                      ),
-                      TextFormField(
-                        controller: addressController,
-                        decoration: InputDecoration(
-                          hintStyle: inputTextStyle.copyWith(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: shadow2,
-                        spreadRadius: 1,
-                        blurRadius: 4,
-                        offset: Offset(0, 4), // changes position of shadow
-                      )
-                    ],
-                  ),
-                  child: TextButton(
-                    onPressed: () async {
-                      if (await updateProfileProvider.update(
-                        name: nameController.text,
-                        phone: phoneController.text,
-                        address: addressController.text,
-                        token: authProvider.user.token,
-                      )) {
-                        if (user.roles == "admin") {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, '/admin', (route) => false);
-                        } else {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, '/home', (route) => false);
-                        }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor: Colors.amber,
-                            content: Text(
-                              "Gagal Update Profile !!!",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    child: Text(
-                      'Simpan Perubahan',
-                      style: whiteTextStyle.copyWith(
-                        fontSize: 20,
-                        fontWeight: semibold,
                       ),
                     ),
-                    style: TextButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Alamat Lengkap",
+                      style: primaryTextStyle.copyWith(
+                          fontSize: 18, fontWeight: semibold),
+                    ),
+                    TextFormField(
+                      controller: addressController,
+                      decoration: InputDecoration(
+                        hintStyle: inputTextStyle.copyWith(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: shadow2,
+                      spreadRadius: 1,
+                      blurRadius: 4,
+                      offset: Offset(0, 4), // changes position of shadow
+                    )
+                  ],
+                ),
+                child: TextButton(
+                  onPressed: () async {
+                    if (await updateProfileProvider.update(
+                      name: nameController.text,
+                      phone: phoneController.text,
+                      address: addressController.text,
+                      token: authProvider.user.token,
+                    )) {
+                      if (user.roles == "admin") {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/admin', (route) => false);
+                      } else {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/home', (route) => false);
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.amber,
+                          content: Text(
+                            "Gagal Update Profile !!!",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(
+                    'Simpan Perubahan',
+                    style: whiteTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: semibold,
+                    ),
                   ),
+                  style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
           ),
         ),
       );

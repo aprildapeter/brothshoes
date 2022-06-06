@@ -69,4 +69,17 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
+  Future<void> getUser(UserModel userModel) async {
+    try {
+      UserModel user =
+          await AuthService().getUser(userModel.token);
+
+            _user = user;
+
+      //return true;
+    } catch (e) {
+      print(e);
+      //return false;
+    }
+  }
 }

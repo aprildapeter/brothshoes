@@ -1,4 +1,5 @@
 import 'package:brothshoes/models/transaction_model.dart';
+import 'package:brothshoes/providers/auth_provider.dart';
 import 'package:brothshoes/widgets/detail_pesanan_product_widget.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
@@ -85,6 +86,7 @@ class _DetailPesananState extends State<DetailPesanan> {
   @override
   Widget build(BuildContext context) {
     transactionProvider = Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     Widget informasiPengguna() {
       return Card(
         elevation: 5,
@@ -459,8 +461,8 @@ class _DetailPesananState extends State<DetailPesanan> {
           //   ),
           // ),
 
-          widget.transactionModel.user.roles == "admin" ||
-                  widget.transactionModel.user.roles == "karyawan"
+          authProvider.user.roles == "admin" ||
+                  authProvider.user.roles == "karyawan"
               ? Padding(
                   padding: const EdgeInsets.all(10),
                   child: isLoading
@@ -724,7 +726,7 @@ class _DetailPesananState extends State<DetailPesanan> {
                                           ),
                                         ),
                 )
-              : widget.transactionModel.user.roles == "pelanggan"
+              : authProvider.user.roles == "pelanggan"
                   ? Padding(
                       padding: const EdgeInsets.all(10),
                       child: isLoading

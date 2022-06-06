@@ -8,7 +8,27 @@ import 'package:brothshoes/widgets/tips_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePageAdmin extends StatelessWidget {
+class HomePageAdmin extends StatefulWidget {
+  @override
+  State<HomePageAdmin> createState() => _HomePageAdminState();
+}
+
+class _HomePageAdminState extends State<HomePageAdmin> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    getInit();
+
+    super.initState();
+  }
+
+  getInit() async {
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
+    await Provider.of<AuthProvider>(context, listen: false)
+        .getUser(authProvider.user);
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);

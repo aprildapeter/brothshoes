@@ -107,4 +107,28 @@ class AuthService {
       throw Exception('Gagal Login');
     }
   }
+
+  Future<UserModel> getUser(String token) async {
+    var url = '$baseUrl/user';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    };
+
+    var response = await http.get(
+      url,
+      headers: headers,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      UserModel user = UserModel.fromJson(data['user']);
+
+      return user;
+    } else {
+      throw Exception('Gagal Get User');
+    }
+  }
 }

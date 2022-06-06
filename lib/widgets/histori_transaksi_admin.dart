@@ -1,7 +1,9 @@
 import 'package:brothshoes/models/transaction_model.dart';
 import 'package:brothshoes/pages/pesanan/detail_pesanan.dart';
+import 'package:brothshoes/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:brothshoes/theme.dart';
+import 'package:provider/provider.dart';
 
 class HistoriTransaksiAdminCard extends StatelessWidget {
   TransactionModel transactionModel;
@@ -9,8 +11,10 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
     return InkWell(
-      onTap: () {
+      onTap: () async {
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -18,6 +22,8 @@ class HistoriTransaksiAdminCard extends StatelessWidget {
                 transactionModel: transactionModel,
               ),
             ));
+        await Provider.of<TransactionProvider>(context, listen: false)
+            .getAllTransaksi();
       },
       child: Container(
         padding: const EdgeInsets.only(bottom: 10),
