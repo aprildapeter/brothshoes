@@ -59,11 +59,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
     setState(() {
       _currentAddress = address;
       _jarak = dist.toStringAsFixed(2);
+      print(_jarak);
+      if (dist > 2) {
+        double jarakBaru = dist - 2;
+        print(jarakBaru);
 
-      if (dist > 10) {
-        double jarakBaru = dist - 10;
-
-        _ongkir = jarakBaru * 1000;
+        _ongkir = jarakBaru.truncateToDouble() * 2500;
       } else {
         _ongkir = 0;
       }
@@ -294,16 +295,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 decoration: InputDecoration(
                   hintText: 'Masukan detail lokasi',
                   hintStyle: inputTextStyle,
-                  fillColor: Colors.green[50],
-                  filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: primaryColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: primaryColor),
-                  ),
+                  // fillColor: Colors.green[50],
+                  // filled: true,
+                  // focusedBorder: OutlineInputBorder(
+                  //   borderSide: BorderSide(color: primaryColor),
+                  //   borderRadius: BorderRadius.circular(10),
+                  // ),
+                  // enabledBorder: OutlineInputBorder(
+                  //   borderRadius: BorderRadius.circular(10),
+                  //   borderSide: BorderSide(color: primaryColor),
+                  // ),
                 ),
                 keyboardType: TextInputType.text,
               ),
@@ -363,7 +364,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Subtotal', style: secondaryTextStyle),
-                  Text('Rp. ${cartProvider.totalPrice()}',
+                  Text('Rp. '+cartProvider.totalPrice().toStringAsFixed(0),
                       style: secondaryTextStyle),
                 ],
               ),
@@ -377,7 +378,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   Text(
                       _ongkir == null
                           ? "Rp. 0"
-                          : "Rp. " + _ongkir.toStringAsFixed(2).toString(),
+                          : "Rp. " + _ongkir.toStringAsFixed(0).toString(),
                       style: secondaryTextStyle),
                 ],
               ),
@@ -400,7 +401,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ? "-"
                           : 'Rp. ' +
                               (cartProvider.totalPrice() + _ongkir)
-                                  .toStringAsFixed(2),
+                                  .toStringAsFixed(0),
                       style: secondaryTextStyle.copyWith(fontWeight: bold)),
                 ],
               ),

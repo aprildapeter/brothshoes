@@ -79,170 +79,215 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget Fullname() {
       return Container(
-        // height: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.green[50],
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primaryColor),
+        ),
         margin: EdgeInsets.only(top: margin * 2),
-        child: TextFormField(
-          controller: nameController,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.person,
-              color: primaryColor,
-            ),
-            labelText: 'Nama Lengkap',
-            labelStyle: button1TextStyle,
-            hintText: 'Masukan Nama Lengkap',
-            hintStyle: inputTextStyle,
-            fillColor: Colors.green[50],
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: primaryColor),
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              Icon(
+                Icons.person,
+                color: primaryColor,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration.collapsed(
+                    // prefixIcon: Icon(
+                    //   Icons.person,
+                    //   color: primaryColor,
+                    // ),
+                    // labelText: 'Nama Lengkap',
+                    // labelStyle: button1TextStyle,
+                    hintText: 'Masukan Nama Lengkap',
+                    hintStyle: inputTextStyle,
+                    // fillColor: Colors.green[50],
+                    // filled: true,
+                    // focusedBorder: OutlineInputBorder(
+                    //   borderSide: BorderSide(color: primaryColor),
+                    //   borderRadius: BorderRadius.circular(10),
+                    // ),
+                    // enabledBorder: OutlineInputBorder(
+                    //   borderRadius: BorderRadius.circular(10),
+                    //   borderSide: BorderSide(color: primaryColor),
+                    // ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+            ],
           ),
-          keyboardType: TextInputType.emailAddress,
         ),
       );
     }
 
     Widget Phone() {
       return Container(
-        // height: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.green[50],
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primaryColor),
+        ),
         margin: EdgeInsets.only(top: 20),
-        child: TextFormField(
-          controller: phoneController,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.phone_android,
-              color: primaryColor,
-            ),
-            labelText: 'No. Tlpn',
-            labelStyle: button1TextStyle,
-            hintText: 'Masukan No. Tlpn',
-            hintStyle: inputTextStyle,
-            fillColor: Colors.green[50],
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: primaryColor),
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              Icon(
+                Icons.phone_android,
+                color: primaryColor,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextFormField(
+                  controller: phoneController,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Masukan No. Tlpn',
+                    hintStyle: inputTextStyle,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+            ],
           ),
-          keyboardType: TextInputType.emailAddress,
         ),
       );
     }
+
     Widget Address() {
       return Container(
-        // height: 50,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.green[50],
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primaryColor),
+        ),
         margin: EdgeInsets.only(top: 20),
-        child: TextFormField(
-          maxLines: 3,
-          controller: addressController,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.home_filled,
-              color: primaryColor,
-            ),
-            labelText: 'Alamat Lengkap',
-            labelStyle: button1TextStyle,
-            hintText: 'Masukan Alamat Lengkap',
-            hintStyle: inputTextStyle,
-            fillColor: Colors.green[50],
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: primaryColor),
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.home_filled,
+                color: primaryColor,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextFormField(
+                  maxLines: 4,
+                  controller: addressController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Masukan Alamat Lengkap',
+                    hintStyle: inputTextStyle,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+            ],
           ),
-          keyboardType: TextInputType.emailAddress,
         ),
       );
     }
 
     Widget InputEmail() {
       return Container(
-        // height: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.green[50],
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primaryColor),
+        ),
         margin: EdgeInsets.only(top: 20),
-        child: TextFormField(
-          controller: emailController,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.email,
-              color: primaryColor,
-            ),
-            labelText: 'Email',
-            labelStyle: button1TextStyle,
-            hintText: 'Masukan Email',
-            hintStyle: inputTextStyle,
-            fillColor: Colors.green[50],
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: primaryColor),
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              Icon(
+                Icons.email,
+                color: primaryColor,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextFormField(
+                  controller: emailController,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Masukan Email',
+                    hintStyle: inputTextStyle,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+            ],
           ),
-          keyboardType: TextInputType.emailAddress,
         ),
       );
     }
 
     Widget InputPass() {
       return Container(
-        // height: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.green[50],
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primaryColor),
+        ),
         margin: EdgeInsets.only(top: 20),
-        child: TextFormField(
-          controller: passwordController,
-          obscureText: _securetext,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            suffixIcon: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _securetext = !_securetext;
-                });
-              },
-              child: Icon(
-                _securetext ? Icons.remove_red_eye : Icons.security,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              Icon(
+                Icons.lock,
                 color: primaryColor,
               ),
-            ),
-            prefixIcon: Icon(
-              Icons.lock,
-              color: primaryColor,
-            ),
-            labelText: 'Password',
-            labelStyle: button1TextStyle,
-            hintText: 'Masukan Password',
-            hintStyle: inputTextStyle,
-            fillColor: Colors.green[50],
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: primaryColor),
-            ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextFormField(
+                  controller: passwordController,
+                  obscureText: _securetext,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Masukan Password',
+                    hintStyle: inputTextStyle,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _securetext = !_securetext;
+                  });
+                },
+                child: Icon(
+                  _securetext ? Icons.remove_red_eye : Icons.security,
+                  color: primaryColor,
+                ),
+              ),
+            ],
           ),
         ),
       );

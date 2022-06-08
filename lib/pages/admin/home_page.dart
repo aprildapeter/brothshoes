@@ -14,20 +14,6 @@ class HomePageAdmin extends StatefulWidget {
 }
 
 class _HomePageAdminState extends State<HomePageAdmin> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    getInit();
-
-    super.initState();
-  }
-
-  getInit() async {
-    AuthProvider authProvider =
-        Provider.of<AuthProvider>(context, listen: false);
-    await Provider.of<AuthProvider>(context, listen: false)
-        .getUser(authProvider.user);
-  }
 
   @override
   Widget build(BuildContext context) {

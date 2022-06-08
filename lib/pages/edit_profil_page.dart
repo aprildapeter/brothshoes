@@ -117,16 +117,25 @@ class EditprofilePage extends StatelessWidget {
                   ),
                   Container(
                     height: 50,
-                    child: TextFormField(
-                      textAlignVertical: TextAlignVertical.bottom,
-                      enabled: false,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        fillColor: Colors.grey[300],
-                        filled: true,
-                        hintText: user.email,
-                        hintStyle: whiteTextStyle.copyWith(
-                          fontSize: 18,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: TextFormField(
+                          // textAlignVertical: TextAlignVertical.bottom,
+                          enabled: false,
+                          decoration: InputDecoration.collapsed(
+                            // border: OutlineInputBorder(),
+                            // fillColor: Colors.grey[300],
+                            // filled: true,
+                            hintText: user.email,
+                            hintStyle: whiteTextStyle.copyWith(
+                              fontSize: 18,
+                            ),
+                          ),
                         ),
                       ),
                     ),

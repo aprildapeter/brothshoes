@@ -27,8 +27,8 @@ class _SplashPageState extends State<SplashPage> {
         Provider.of<AuthProvider>(context, listen: false);
 
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
-    await Provider.of<AuthProvider>(context, listen: false)
-        .getUser(authProvider.user);
+    // await Provider.of<AuthProvider>(context, listen: false)
+    //     .getUser(authProvider.user);
 
     Navigator.pushNamed(context, '/sign-in');
   }

@@ -84,74 +84,124 @@ class _SigninPageState extends State<SigninPage> {
 
     Widget InputEmail() {
       return Container(
-        // height: 50,
+        height: 50,
         margin: EdgeInsets.only(top: margin * 2),
-        child: TextFormField(
-          controller: emailController,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.email,
-              color: primaryColor,
-            ),
-            labelText: 'Email',
-            labelStyle: button1TextStyle,
-            hintText: 'Masukan Email',
-            hintStyle: inputTextStyle,
-            fillColor: Colors.green[50],
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: primaryColor),
-            ),
+        decoration: BoxDecoration(
+          color: Colors.green[50],
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primaryColor),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              Icon(
+                Icons.email,
+                color: primaryColor,
+              ),
+              SizedBox(width: 10,),
+              Expanded(
+                child: TextFormField(
+                  controller: emailController,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration.collapsed(
+                    // prefixIcon: Icon(
+                    //   Icons.email,
+                    //   color: primaryColor,
+                    // ),
+                    // labelText: 'Email',
+                    // labelStyle: button1TextStyle,
+                    hintText: 'Masukan Email',
+                    hintStyle: inputTextStyle,
+                    // fillColor: Colors.green[50],
+                    // filled: true,
+                    // focusedBorder: OutlineInputBorder(
+                    //   borderSide: BorderSide(color: primaryColor),
+                    //   borderRadius: BorderRadius.circular(10),
+                    // ),
+                    // enabledBorder: OutlineInputBorder(
+                    //   borderRadius: BorderRadius.circular(10),
+                    //   borderSide: BorderSide(color: primaryColor),
+                    // ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+            ],
           ),
-          keyboardType: TextInputType.emailAddress,
         ),
       );
     }
 
     Widget InputPass() {
       return Container(
-        // height: 50,
+        height: 50,
         margin: const EdgeInsets.only(top: 20),
-        child: TextFormField(
-          controller: passController,
-          obscureText: _securetext,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            suffixIcon: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _securetext = !_securetext;
-                });
-              },
-              child: Icon(
-                _securetext ? Icons.remove_red_eye : Icons.security,
-                color: primaryColor,
+        decoration: BoxDecoration(
+          color: Colors.green[50],
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primaryColor),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              Icon(
+                      Icons.lock,
+                      color: primaryColor,
+                    ),
+                    SizedBox(width: 10,),
+              Expanded(
+                child: TextFormField(
+                  controller: passController,
+                  obscureText: _securetext,
+                  // textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration.collapsed(
+                    // suffixIcon: GestureDetector(
+                    //   onTap: () {
+                    //     setState(() {
+                    //       _securetext = !_securetext;
+                    //     });
+                    //   },
+                    //   child: Icon(
+                    //     _securetext ? Icons.remove_red_eye : Icons.security,
+                    //     color: primaryColor,
+                    //   ),
+                    // ),
+                    // prefixIcon: Icon(
+                    //   Icons.lock,
+                    //   color: primaryColor,
+                    // ),
+                    // labelText: 'Password',
+                    // labelStyle: button1TextStyle,
+                    hintText: 'Masukan Password',
+                    hintStyle: inputTextStyle,
+                    // fillColor: Colors.green[50],
+                    // filled: true,
+                    // focusedBorder: OutlineInputBorder(
+                    //   borderSide: BorderSide(color: primaryColor),
+                    //   borderRadius: BorderRadius.circular(10),
+                    // ),
+                    // enabledBorder: OutlineInputBorder(
+                    //   borderRadius: BorderRadius.circular(10),
+                    //   borderSide: BorderSide(color: primaryColor),
+                    // ),
+                  ),
+                ),
               ),
-            ),
-            prefixIcon: Icon(
-              Icons.lock,
-              color: primaryColor,
-            ),
-            labelText: 'Password',
-            labelStyle: button1TextStyle,
-            hintText: 'Masukan Password',
-            hintStyle: inputTextStyle,
-            fillColor: Colors.green[50],
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: primaryColor),
-            ),
+              SizedBox(width: 10,),
+              GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _securetext = !_securetext;
+                      });
+                    },
+                    child: Icon(
+                      _securetext ? Icons.remove_red_eye : Icons.security,
+                      color: primaryColor,
+                    ),
+                  ),
+            ],
           ),
         ),
       );
