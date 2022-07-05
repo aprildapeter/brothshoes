@@ -7,7 +7,7 @@ class TipsSepatuPage extends StatelessWidget {
     Widget hero() {
       return Container(
         margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-        child: Image.asset('assets/images/helm.jpg'),
+        child: Image.asset('assets/images/sepatu.jpg'),
       );
     }
 

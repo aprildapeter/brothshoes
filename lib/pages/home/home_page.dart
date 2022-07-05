@@ -1,8 +1,10 @@
 import 'package:brothshoes/models/user_model.dart';
 import 'package:brothshoes/providers/auth_provider.dart';
+import 'package:brothshoes/providers/categories_provider.dart';
 import 'package:brothshoes/providers/product_provider.dart';
 import 'package:brothshoes/theme.dart';
 import 'package:brothshoes/widgets/layanan_card.dart';
+import 'package:brothshoes/widgets/layanankat_card.dart';
 import 'package:brothshoes/widgets/pesanan_tile.dart';
 import 'package:brothshoes/widgets/tips_card.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class HomePage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    CategoriesProvider categoriesProvider = Provider.of<CategoriesProvider>(context);
 
     Widget header() {
       return Container(
@@ -45,16 +48,16 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ]),
-            Spacer(),
-            IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/cart');
-                },
-                icon: Icon(
-                  Icons.shopping_basket,
-                  size: 40,
-                  color: primaryColor,
-                ))
+            // Spacer(),
+            // IconButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, '/cart');
+            //     },
+            //     icon: Icon(
+            //       Icons.shopping_basket,
+            //       size: 40,
+            //       color: primaryColor,
+            //     ))
           ],
         ),
       );
@@ -104,7 +107,7 @@ class HomePage extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                "assets/images/american.png",
+                "assets/images/sepatu.jpg",
                 height: 110,
                 width: 110,
                 fit: BoxFit.fill,
@@ -137,6 +140,25 @@ class HomePage extends StatelessWidget {
               children: productProvider.products
                   .map(
                     (product) => LayananCard(product),
+                  )
+                  .toList(),
+            ),
+          ],
+        ),
+      );
+    }
+    Widget LayananKat() {
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 30,
+            ),
+            Row(
+              children: categoriesProvider.categories
+                  .map(
+                    (categories) => LayananKatCard(categories),
                   )
                   .toList(),
             ),
@@ -222,7 +244,8 @@ class HomePage extends StatelessWidget {
               ),
               hero(),
               LayananTitle(),
-              Layanan(),
+              LayananKat(),
+              // Layanan(),
               TrickTitle(),
               TipsTrick()
             ]),

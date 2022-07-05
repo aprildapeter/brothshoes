@@ -1,11 +1,15 @@
+import 'package:brothshoes/models/user_model.dart';
 import 'package:brothshoes/pages/cart_page.dart';
 import 'package:brothshoes/pages/home/chat_page.dart';
 import 'package:brothshoes/pages/home/home_page.dart';
 import 'package:brothshoes/pages/home/pesanan_page.dart';
 import 'package:brothshoes/pages/home/profile_page.dart';
 import 'package:brothshoes/pages/home/transaksi_histori_page.dart';
+import 'package:brothshoes/providers/auth_provider.dart';
+import 'package:brothshoes/providers/transaction_provider.dart';
 import 'package:brothshoes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -18,6 +22,7 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     Widget cartButton() {
       return FloatingActionButton(
         onPressed: () {
@@ -93,7 +98,13 @@ class _MainPageState extends State<MainPage> {
       extendBody: true,
       // floatingActionButton: cartButton(),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: body(),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Provider.of<AuthProvider>(context, listen: false)
+              .getUser(authProvider.user);
+        },
+        child: body(),
+      ),
     );
   }
 }

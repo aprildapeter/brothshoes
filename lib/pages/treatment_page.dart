@@ -1,3 +1,4 @@
+import 'package:brothshoes/models/category_model.dart';
 import 'package:brothshoes/models/product_model.dart';
 import 'package:brothshoes/providers/product_provider.dart';
 import 'package:brothshoes/widgets/layanan_card.dart';
@@ -7,12 +8,16 @@ import 'package:brothshoes/theme.dart';
 import 'package:provider/provider.dart';
 
 class treatmentPage extends StatelessWidget {
-  final ProductModel product;
-  treatmentPage(this.product);
+  final CategoryModel categories;
+  treatmentPage(this.categories);
 
   @override
   Widget build(BuildContext context) {
-    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    // ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    List<ProductModel> productProvider = Provider.of<ProductProvider>(context)
+        .products
+        .where((ProductModel element) => element.category.id == categories.id)
+        .toList();
     Widget header() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -28,7 +33,16 @@ class treatmentPage extends StatelessWidget {
     Widget content() {
       return Container(
         margin: EdgeInsets.symmetric(vertical: 30),
-        child: Row(children: [TreatmentTile(product)]),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: productProvider
+                    .map(
+                      (categories) => TreatmentTile(categories),
+                    )
+                    .toList(),
+          ),
+        ),
       );
     }
 

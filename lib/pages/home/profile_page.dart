@@ -127,27 +127,27 @@ TextEditingController nameController = TextEditingController(text: '');
               )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.help,
-                  size: 35,
-                  color: primaryText,
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  "Pusat Bantuan",
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 18,
-                  ),
-                )
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 20),
+          //   child: Row(
+          //     children: [
+          //       Icon(
+          //         Icons.help,
+          //         size: 35,
+          //         color: primaryText,
+          //       ),
+          //       SizedBox(
+          //         width: 15,
+          //       ),
+          //       Text(
+          //         "Pusat Bantuan",
+          //         style: primaryTextStyle.copyWith(
+          //           fontSize: 18,
+          //         ),
+          //       )
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: GestureDetector(

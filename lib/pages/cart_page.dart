@@ -49,19 +49,19 @@ class CartPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: primaryColor,
-                fixedSize: const Size(120, 50),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-              ),
-              onPressed: () {},
-              child: Text(
-                'Telusuri',
-                style:
-                    whiteTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
-              ))
+          // ElevatedButton(
+          //     style: ElevatedButton.styleFrom(
+          //       primary: primaryColor,
+          //       fixedSize: const Size(120, 50),
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(20)),
+          //     ),
+          //     onPressed: () {},
+          //     child: Text(
+          //       'Telusuri',
+          //       style:
+          //           whiteTextStyle.copyWith(fontSize: 20, fontWeight: semibold),
+          //     ))
         ],
       ));
     }
